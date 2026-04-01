@@ -1,0 +1,1716 @@
+fileFormatVersion: 2
+guid: 30eaa5ab8b66743438078e9c15afc136
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1939870589544384700
+    second: CuteCardsPixel_0
+  - first:
+      213: 8580619020420331642
+    second: CuteCardsPixel_1
+  - first:
+      213: -3500118453633644531
+    second: CuteCardsPixel_2
+  - first:
+      213: -6696778270111645233
+    second: CuteCardsPixel_3
+  - first:
+      213: 7670760501198649520
+    second: CuteCardsPixel_4
+  - first:
+      213: 1414238088348037449
+    second: CuteCardsPixel_5
+  - first:
+      213: 6805390452298104022
+    second: CuteCardsPixel_6
+  - first:
+      213: 6594722673967006791
+    second: CuteCardsPixel_7
+  - first:
+      213: 9092107192112697210
+    second: CuteCardsPixel_8
+  - first:
+      213: 8979611649644834476
+    second: CuteCardsPixel_9
+  - first:
+      213: 1045480036214972352
+    second: CuteCardsPixel_10
+  - first:
+      213: 2821460561878645315
+    second: CuteCardsPixel_11
+  - first:
+      213: -72366951205392139
+    second: CuteCardsPixel_12
+  - first:
+      213: -4177783874259835003
+    second: CuteCardsPixel_13
+  - first:
+      213: 1275620574058640094
+    second: CuteCardsPixel_14
+  - first:
+      213: -6797764756061369480
+    second: CuteCardsPixel_15
+  - first:
+      213: 2057543489467745259
+    second: CuteCardsPixel_16
+  - first:
+      213: -9101104373388465125
+    second: CuteCardsPixel_17
+  - first:
+      213: 1113895405383563581
+    second: CuteCardsPixel_18
+  - first:
+      213: -8716409993667718920
+    second: CuteCardsPixel_19
+  - first:
+      213: -2464645476048822703
+    second: CuteCardsPixel_20
+  - first:
+      213: -40746395330905449
+    second: CuteCardsPixel_21
+  - first:
+      213: -1740287144956966738
+    second: CuteCardsPixel_22
+  - first:
+      213: 5793344322453810056
+    second: CuteCardsPixel_23
+  - first:
+      213: 7165412076169989594
+    second: CuteCardsPixel_24
+  - first:
+      213: -4636613116353222381
+    second: CuteCardsPixel_25
+  - first:
+      213: 6213301752395249459
+    second: CuteCardsPixel_26
+  - first:
+      213: -6730045793472536092
+    second: CuteCardsPixel_27
+  - first:
+      213: 3198259231763361461
+    second: CuteCardsPixel_28
+  - first:
+      213: 1174084940574499343
+    second: CuteCardsPixel_29
+  - first:
+      213: -6919442765652051212
+    second: CuteCardsPixel_30
+  - first:
+      213: -7289835073717339361
+    second: CuteCardsPixel_31
+  - first:
+      213: 5404647395084027344
+    second: CuteCardsPixel_32
+  - first:
+      213: 252930207910491040
+    second: CuteCardsPixel_33
+  - first:
+      213: 680945249848574961
+    second: CuteCardsPixel_34
+  - first:
+      213: 5123240531313761195
+    second: CuteCardsPixel_35
+  - first:
+      213: -3857769687312757056
+    second: CuteCardsPixel_36
+  - first:
+      213: -5867377749040944079
+    second: CuteCardsPixel_37
+  - first:
+      213: 131940560262905548
+    second: CuteCardsPixel_38
+  - first:
+      213: -3630524164713814865
+    second: CuteCardsPixel_39
+  - first:
+      213: 7107275320521642205
+    second: CuteCardsPixel_40
+  - first:
+      213: 1950962818229068965
+    second: CuteCardsPixel_41
+  - first:
+      213: 6321214351407126409
+    second: CuteCardsPixel_42
+  - first:
+      213: -7183925783867949613
+    second: CuteCardsPixel_43
+  - first:
+      213: -6025599516847055383
+    second: CuteCardsPixel_44
+  - first:
+      213: 5716012172093643152
+    second: CuteCardsPixel_45
+  - first:
+      213: 4057200599424336598
+    second: CuteCardsPixel_46
+  - first:
+      213: 228517011915346342
+    second: CuteCardsPixel_47
+  - first:
+      213: -2606184889983240134
+    second: CuteCardsPixel_48
+  - first:
+      213: 4265511591911566696
+    second: CuteCardsPixel_49
+  - first:
+      213: -5790657833095454819
+    second: CuteCardsPixel_50
+  - first:
+      213: 4335051033797176544
+    second: CuteCardsPixel_51
+  - first:
+      213: 4472694047406425498
+    second: CuteCardsPixel_52
+  - first:
+      213: 1208767418207304004
+    second: CuteCardsPixel_53
+  - first:
+      213: -5763778967270208575
+    second: CuteCardsPixel_54
+  - first:
+      213: -8808516761984028316
+    second: CuteCardsPixel_55
+  - first:
+      213: 647391978740628536
+    second: CuteCardsPixel_56
+  - first:
+      213: -8140419220097632458
+    second: CuteCardsPixel_57
+  - first:
+      213: 6806252622887919289
+    second: CuteCardsPixel_58
+  - first:
+      213: 8237247163765090107
+    second: CuteCardsPixel_59
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CuteCardsPixel_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb84508f50ecbea10800000000000000
+      internalID: 1939870589544384700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a783d19798b741770800000000000000
+      internalID: 8580619020420331642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_2
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0880639fc41d6fc0800000000000000
+      internalID: -3500118453633644531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1c076f4a34013a0800000000000000
+      internalID: -6696778270111645233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_4
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b8fa0fc804047a60800000000000000
+      internalID: 7670760501198649520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_5
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 941ffc36c0260a310800000000000000
+      internalID: 1414238088348037449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_6
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dc30135f8a917e50800000000000000
+      internalID: 6805390452298104022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_7
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7448406e459258b50800000000000000
+      internalID: 6594722673967006791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_8
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7fc6a5b157ad2e70800000000000000
+      internalID: 9092107192112697210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cae2a06283dfd9c70800000000000000
+      internalID: 8979611649644834476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_10
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cf1b52cd8a428e00800000000000000
+      internalID: 1045480036214972352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_11
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34afc8aae67d72720800000000000000
+      internalID: 2821460561878645315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_12
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f0bceb24a6eefef0800000000000000
+      internalID: -72366951205392139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_13
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 587236283b78506c0800000000000000
+      internalID: -4177783874259835003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_14
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed2f1f0572ae3b110800000000000000
+      internalID: 1275620574058640094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_15
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87bca4078fc79a1a0800000000000000
+      internalID: -6797764756061369480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_16
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be384aff6ecdd8c10800000000000000
+      internalID: 2057543489467745259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1c2d68cac162b180800000000000000
+      internalID: -9101104373388465125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_18
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39b3d238f9557f00800000000000000
+      internalID: 1113895405383563581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_19
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f055c2da47190780800000000000000
+      internalID: -8716409993667718920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_20
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15e16de6ff1dbcdd0800000000000000
+      internalID: -2464645476048822703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_21
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a7c6c8e5d3f6ff0800000000000000
+      internalID: -40746395330905449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_22
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea849a5ef0249d7e0800000000000000
+      internalID: -1740287144956966738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_23
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ba26187f7166050800000000000000
+      internalID: 5793344322453810056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_24
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add086db158a07360800000000000000
+      internalID: 7165412076169989594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_25
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31969debfe077afb0800000000000000
+      internalID: -4636613116353222381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_26
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 337b4d936051a3650800000000000000
+      internalID: 6213301752395249459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_27
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e125f512031a92a0800000000000000
+      internalID: -6730045793472536092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_28
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 108
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5be6ed083df726c20800000000000000
+      internalID: 3198259231763361461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_29
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 72
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f02241b68003b4010800000000000000
+      internalID: 1174084940574499343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fab9a5277339ff90800000000000000
+      internalID: -6919442765652051212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1bf4e7af9d45da90800000000000000
+      internalID: -7289835073717339361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_32
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d54938bb2a210b40800000000000000
+      internalID: 5404647395084027344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_33
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a3787b1fa6928300800000000000000
+      internalID: 252930207910491040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_34
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f3c6b0d814337900800000000000000
+      internalID: 680945249848574961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_35
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bab17df7e18691740800000000000000
+      internalID: 5123240531313761195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_36
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ce0472a8e2767ac0800000000000000
+      internalID: -3857769687312757056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_37
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13c22612603e29ea0800000000000000
+      internalID: -5867377749040944079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_38
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccebfe19d3fb4d100800000000000000
+      internalID: 131940560262905548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_39
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa4e2cde189cd9dc0800000000000000
+      internalID: -3630524164713814865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_40
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd0d7908f3d12a260800000000000000
+      internalID: 7107275320521642205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_41
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a4e986b856331b10800000000000000
+      internalID: 1950962818229068965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_42
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98719bc16f679b750800000000000000
+      internalID: 6321214351407126409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_43
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ddf7c7cf819d4c90800000000000000
+      internalID: -7183925783867949613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_44
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9edd0971a25c06ca0800000000000000
+      internalID: -6025599516847055383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_45
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 099537929ca535f40800000000000000
+      internalID: 5716012172093643152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_46
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d2803ff2721e4830800000000000000
+      internalID: 4057200599424336598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_47
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a11958f20bdb2300800000000000000
+      internalID: 228517011915346342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_48
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38fe8596a8f4dbd0800000000000000
+      internalID: -2606184889983240134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_49
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86d23357134223b30800000000000000
+      internalID: 4265511591911566696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_50
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f138a816373afa0800000000000000
+      internalID: -5790657833095454819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_51
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ecaba872f1392c30800000000000000
+      internalID: 4335051033797176544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_52
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a950aace983321e30800000000000000
+      internalID: 4472694047406425498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_53
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449ff42009766c010800000000000000
+      internalID: 1208767418207304004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_54
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cbcdfb2191f200b0800000000000000
+      internalID: -5763778967270208575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_55
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4613edbacacd1c580800000000000000
+      internalID: -8808516761984028316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_56
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83cb54b139ffbf800800000000000000
+      internalID: 647391978740628536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_57
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 637715f59db670f80800000000000000
+      internalID: -8140419220097632458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_58
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 36
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9be1ece03baa47e50800000000000000
+      internalID: 6806252622887919289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CuteCardsPixel_59
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 25
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b37ef4317a4905270800000000000000
+      internalID: 8237247163765090107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CuteCardsPixel_0: 1939870589544384700
+      CuteCardsPixel_1: 8580619020420331642
+      CuteCardsPixel_10: 1045480036214972352
+      CuteCardsPixel_11: 2821460561878645315
+      CuteCardsPixel_12: -72366951205392139
+      CuteCardsPixel_13: -4177783874259835003
+      CuteCardsPixel_14: 1275620574058640094
+      CuteCardsPixel_15: -6797764756061369480
+      CuteCardsPixel_16: 2057543489467745259
+      CuteCardsPixel_17: -9101104373388465125
+      CuteCardsPixel_18: 1113895405383563581
+      CuteCardsPixel_19: -8716409993667718920
+      CuteCardsPixel_2: -3500118453633644531
+      CuteCardsPixel_20: -2464645476048822703
+      CuteCardsPixel_21: -40746395330905449
+      CuteCardsPixel_22: -1740287144956966738
+      CuteCardsPixel_23: 5793344322453810056
+      CuteCardsPixel_24: 7165412076169989594
+      CuteCardsPixel_25: -4636613116353222381
+      CuteCardsPixel_26: 6213301752395249459
+      CuteCardsPixel_27: -6730045793472536092
+      CuteCardsPixel_28: 3198259231763361461
+      CuteCardsPixel_29: 1174084940574499343
+      CuteCardsPixel_3: -6696778270111645233
+      CuteCardsPixel_30: -6919442765652051212
+      CuteCardsPixel_31: -7289835073717339361
+      CuteCardsPixel_32: 5404647395084027344
+      CuteCardsPixel_33: 252930207910491040
+      CuteCardsPixel_34: 680945249848574961
+      CuteCardsPixel_35: 5123240531313761195
+      CuteCardsPixel_36: -3857769687312757056
+      CuteCardsPixel_37: -5867377749040944079
+      CuteCardsPixel_38: 131940560262905548
+      CuteCardsPixel_39: -3630524164713814865
+      CuteCardsPixel_4: 7670760501198649520
+      CuteCardsPixel_40: 7107275320521642205
+      CuteCardsPixel_41: 1950962818229068965
+      CuteCardsPixel_42: 6321214351407126409
+      CuteCardsPixel_43: -7183925783867949613
+      CuteCardsPixel_44: -6025599516847055383
+      CuteCardsPixel_45: 5716012172093643152
+      CuteCardsPixel_46: 4057200599424336598
+      CuteCardsPixel_47: 228517011915346342
+      CuteCardsPixel_48: -2606184889983240134
+      CuteCardsPixel_49: 4265511591911566696
+      CuteCardsPixel_5: 1414238088348037449
+      CuteCardsPixel_50: -5790657833095454819
+      CuteCardsPixel_51: 4335051033797176544
+      CuteCardsPixel_52: 4472694047406425498
+      CuteCardsPixel_53: 1208767418207304004
+      CuteCardsPixel_54: -5763778967270208575
+      CuteCardsPixel_55: -8808516761984028316
+      CuteCardsPixel_56: 647391978740628536
+      CuteCardsPixel_57: -8140419220097632458
+      CuteCardsPixel_58: 6806252622887919289
+      CuteCardsPixel_59: 8237247163765090107
+      CuteCardsPixel_6: 6805390452298104022
+      CuteCardsPixel_7: 6594722673967006791
+      CuteCardsPixel_8: 9092107192112697210
+      CuteCardsPixel_9: 8979611649644834476
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

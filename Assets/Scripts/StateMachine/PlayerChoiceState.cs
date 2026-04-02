@@ -54,7 +54,7 @@ public class PlayerChoiceState : IGameState
     {
         if (context == null) return;
         if (context.DungeonRoom.HasFled) return;
-        if (context.DungeonRoom.RemainingCount == 4) return; // must resolve at least one card first
+        if (context.DungeonRoom.RemainingCards == 4) return; // must resolve at least one card first
  
         OnFleeRequested?.Invoke();
     }

@@ -9,12 +9,12 @@ using UnityEngine;
     {
         // ── Config ───────────────────────────────────────────────────────
  
-        private static readonly float dealDuration    = 0.35f;
-        private static readonly float flipDuration    = 0.15f;
+        private static readonly float dealDuration = 0.35f;
+        private static readonly float flipDuration = 0.15f;
         private static readonly float discardDuration = 0.25f;
-        private static readonly float hoverHeight     = 24f;
-        private static readonly Ease  dealEase        = Ease.OutCubic;
-        private static readonly Ease  discardEase     = Ease.InCubic;
+        private static readonly float hoverHeight = 24f;
+        private static readonly Ease  dealEase = Ease.OutCubic;
+        private static readonly Ease  discardEase = Ease.InCubic;
  
         // ── References ───────────────────────────────────────────────────
  
@@ -25,7 +25,7 @@ using UnityEngine;
  
         public CardAnimator(Transform transform, SpriteRenderer renderer)
         {
-            cardTransform  = transform;
+            cardTransform = transform;
             spriteRenderer = renderer;
         }
  

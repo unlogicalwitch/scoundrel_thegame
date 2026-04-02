@@ -17,11 +17,11 @@ using UnityEngine;
     {
         // ── State ────────────────────────────────────────────────────────
  
-        private CardSO          cardData;
-        private CardAnimator    animator;
-        private SpriteRenderer  spriteRenderer;
-        private Vector3         slotPosition;
-        private bool            isInteractable;
+        private CardSO cardData;
+        private CardAnimator animator;
+        private SpriteRenderer spriteRenderer;
+        private Vector3 slotPosition;
+        private bool isInteractable;
  
         public CardSO CardData => cardData;
  
@@ -34,7 +34,7 @@ using UnityEngine;
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            animator       = new CardAnimator(transform, spriteRenderer);
+            animator = new CardAnimator(transform, spriteRenderer);
         }
  
         /// <summary>
@@ -42,8 +42,8 @@ using UnityEngine;
         /// </summary>
         public void Initialise(CardSO data, PlayerChoiceState choice, Sprite backSprite)
         {
-            cardData       = data;
-            choiceState    = choice;
+            cardData = data;
+            choiceState = choice;
             isInteractable = false;
  
             spriteRenderer.sprite = backSprite;

@@ -11,6 +11,7 @@ public class GameStateMachine : MonoBehaviour
     // ── Inspector ────────────────────────────────────────────────────
 
     [SerializeField] private int startingHealth = 20;
+    [SerializeField] private RoomView roomView;
 
     // ── State ────────────────────────────────────────────────────────
 
@@ -35,8 +36,10 @@ public class GameStateMachine : MonoBehaviour
         var playerState = new PlayerState(startingHealth);
         var dungeonRoom = new DungeonRoom();
         context = new GameContext(deckManager, playerState, dungeonRoom);
-
+        
         RegisterStates();
+        var playerChoiceState = (PlayerChoiceState)states[typeof(PlayerChoiceState)];
+        roomView.Initialise(context.DungeonRoom, playerChoiceState);
         TransitionTo<DrawingState>();
     }
 

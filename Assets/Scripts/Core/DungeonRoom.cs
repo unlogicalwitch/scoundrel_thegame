@@ -11,27 +11,28 @@ using UnityEngine;
     {
         // ── State ────────────────────────────────────────────────────────
  
-        private readonly List<CardSO> cards        = new(4);
+        private readonly List<CardSO> cards = new(4);
         private readonly List<CardSO> resolvedCards = new(4);
  
         // ── Events ───────────────────────────────────────────────────────
  
-        public event Action<CardSO>        OnCardResolved;
-        public event Action<IList<CardSO>> OnRoomDealt;
-        public event Action                OnRoomCleared;
+        public event Action<CardSO> OnCardResolved;
+        public event Action<List<CardSO>> OnRoomDealt;
+        public event Action OnRoomCleared;
  
         // ── Public API ───────────────────────────────────────────────────
  
-        public IReadOnlyList<CardSO> Cards         => cards.AsReadOnly();
-        public bool                  HasFled        { get; private set; }
-        public bool                  IsCleared      => cards.Count == 0;
-        public int                   RemainingCount => cards.Count;
+        public IReadOnlyList<CardSO> Cards => cards.AsReadOnly();
+        public bool HasFled { get; private set; }
+        public bool IsCleared => cards.Count == 0;
+        public int RemainingCards => cards.Count;
  
         /// <summary>
         /// Set up a new room with up to 4 cards drawn from the deck.
         /// </summary>
-        public void Deal(IList<CardSO> newCards)
+        public void Deal(List<CardSO> newCards)
         {
+            Debug.Log("Dealing cards...");
             cards.Clear();
             resolvedCards.Clear();
             HasFled = false;
@@ -39,7 +40,7 @@ using UnityEngine;
             foreach (var card in newCards)
                 if (card != null) cards.Add(card);
  
-            OnRoomDealt?.Invoke(cards.AsReadOnly());
+            OnRoomDealt?.Invoke(cards);
         }
  
         /// <summary>

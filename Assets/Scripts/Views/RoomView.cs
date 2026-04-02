@@ -12,18 +12,18 @@ using UnityEngine;
  
         [Header("Layout")]
         [SerializeField] private Transform[] cardSlots;      // 4 empty GameObjects marking slot positions
-        [SerializeField] private Transform   deckPosition;   // where cards fly from
-        [SerializeField] private Transform   discardPosition; // where resolved cards fly to
+        [SerializeField] private Transform deckPosition;   // where cards fly from
+        [SerializeField] private Transform discardPosition; // where resolved cards fly to
  
         [Header("Prefabs & Assets")]
         [SerializeField] private GameObject cardPrefab;      // has CardView + SpriteRenderer + Collider2D
-        [SerializeField] private Sprite     cardBackSprite;
+        [SerializeField] private Sprite cardBackSprite;
  
         // ── Runtime ──────────────────────────────────────────────────────
  
         private readonly List<CardView> activeCardViews = new(4);
-        private DungeonRoom         dungeonRoom;
-        private PlayerChoiceState   choiceState;
+        private DungeonRoom dungeonRoom;
+        private PlayerChoiceState choiceState;
  
         // ── Setup ────────────────────────────────────────────────────────
  
@@ -48,8 +48,9 @@ using UnityEngine;
  
         // ── Event handlers ───────────────────────────────────────────────
  
-        private void HandleRoomDealt(IList<CardSO> cards)
+        private void HandleRoomDealt(List<CardSO> cards)
         {
+            Debug.Log("Handling room dealt");
             ClearRoom();
  
             for (int i = 0; i < cards.Count && i < cardSlots.Length; i++)

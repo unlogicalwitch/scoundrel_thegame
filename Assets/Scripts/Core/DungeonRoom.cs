@@ -19,6 +19,7 @@ using UnityEngine;
         public event Action<CardSO> OnCardResolved;
         public event Action<List<CardSO>> OnRoomDealt;
         public event Action OnRoomCleared;
+        public event Action OnRoomReady;
  
         // ── Public API ───────────────────────────────────────────────────
  

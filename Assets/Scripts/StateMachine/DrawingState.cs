@@ -10,6 +10,8 @@ public class DrawingState : IGameState
  
     public void Enter(GameContext context)
     {
+        context.DungeonRoom.OnRoomReady += HandleRoomReady;
+        
         if (context.DeckManager.IsDeckEmpty)
         {
             // No cards left — trigger game over
@@ -22,4 +24,9 @@ public class DrawingState : IGameState
     }
  
     public void Exit(GameContext context) { }
+
+    private void HandleRoomReady()
+    {
+        
+    }
 }

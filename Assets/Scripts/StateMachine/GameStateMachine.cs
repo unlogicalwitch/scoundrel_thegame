@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,9 @@ using UnityEngine;
 /// </summary>
 public class GameStateMachine : MonoBehaviour
 {
+    private static GameStateMachine instance;
+    public static GameStateMachine Instance => instance ??= FindObjectOfType<GameStateMachine>();
+    
     // ── Inspector ────────────────────────────────────────────────────
 
     [SerializeField] private int startingHealth = 20;
@@ -25,12 +29,12 @@ public class GameStateMachine : MonoBehaviour
 
     // ── Public API ───────────────────────────────────────────────────
 
-    public GameContext Context      => context;
+    public GameContext Context => context;
     public IGameState  CurrentState => currentState;
 
     // ── Lifecycle ────────────────────────────────────────────────────
 
-    private void Start()
+    private IEnumerator Start()
     {
         var deckManager = ServiceLocator.Get<DeckManager>();
         var playerState = new PlayerState(startingHealth);
@@ -38,6 +42,8 @@ public class GameStateMachine : MonoBehaviour
         context = new GameContext(deckManager, playerState, dungeonRoom);
         
         RegisterStates();
+        
+        yield return new WaitForSeconds(2f);
         var playerChoiceState = (PlayerChoiceState)states[typeof(PlayerChoiceState)];
         roomView.Initialise(context.DungeonRoom, playerChoiceState);
         TransitionTo<DrawingState>();

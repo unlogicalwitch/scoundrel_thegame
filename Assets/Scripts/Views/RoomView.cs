@@ -50,7 +50,6 @@ using UnityEngine;
  
         private void HandleRoomDealt(List<CardSO> cards)
         {
-            Debug.Log("Handling room dealt");
             ClearRoom();
  
             for (int i = 0; i < cards.Count && i < cardSlots.Length; i++)
@@ -63,6 +62,8 @@ using UnityEngine;
  
                 activeCardViews.Add(view);
             }
+            
+            
         }
  
         private void HandleCardResolved(CardSO card)

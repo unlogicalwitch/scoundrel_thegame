@@ -9,11 +9,13 @@ public class GameContext
     public DeckManager  DeckManager  { get; }
     public PlayerState  PlayerState  { get; }
     public DungeonRoom  DungeonRoom  { get; }
+    public GameStateMachine StateMachine { get; }
  
-    public GameContext(DeckManager deckManager, PlayerState playerState, DungeonRoom dungeonRoom)
+    public GameContext(DeckManager deckManager, PlayerState playerState, DungeonRoom dungeonRoom, GameStateMachine stateMachine)
     {
         DeckManager = deckManager;
         PlayerState = playerState;
         DungeonRoom = dungeonRoom;
+        StateMachine = stateMachine;
     }
 }

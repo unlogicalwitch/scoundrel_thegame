@@ -9,9 +9,6 @@ using UnityEngine;
 /// </summary>
 public class GameStateMachine : MonoBehaviour
 {
-    private static GameStateMachine instance;
-    public static GameStateMachine Instance => instance ??= FindObjectOfType<GameStateMachine>();
-    
     // ── Inspector ────────────────────────────────────────────────────
 
     [SerializeField] private int startingHealth = 20;
@@ -39,7 +36,7 @@ public class GameStateMachine : MonoBehaviour
         var deckManager = ServiceLocator.Get<DeckManager>();
         var playerState = new PlayerState(startingHealth);
         var dungeonRoom = new DungeonRoom();
-        context = new GameContext(deckManager, playerState, dungeonRoom);
+        context = new GameContext(deckManager, playerState, dungeonRoom, this);
         
         RegisterStates();
         

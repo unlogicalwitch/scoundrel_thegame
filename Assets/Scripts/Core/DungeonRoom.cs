@@ -59,6 +59,15 @@ using UnityEngine;
         }
  
         /// <summary>
+        /// Called by RoomView once all deal animations have finished.
+        /// Fires OnRoomReady so DrawingState can transition to PlayerChoiceState.
+        /// </summary>
+        public void NotifyRoomReady()
+        {
+            OnRoomReady?.Invoke();
+        }
+
+        /// <summary>
         /// Returns all remaining unresolved cards (for returning to deck on flee).
         /// Marks this room as fled so it cannot be fled again.
         /// </summary>

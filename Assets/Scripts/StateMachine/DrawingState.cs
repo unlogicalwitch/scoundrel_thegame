@@ -7,9 +7,11 @@ using UnityEngine;
 public class DrawingState : IGameState
 {
     private const int RoomSize = 4;
+    private GameContext context;
  
     public void Enter(GameContext context)
     {
+        this.context = context;
         context.DungeonRoom.OnRoomReady += HandleRoomReady;
         
         if (context.DeckManager.IsDeckEmpty)
@@ -27,6 +29,6 @@ public class DrawingState : IGameState
 
     private void HandleRoomReady()
     {
-        
+        context.StateMachine.TransitionTo<PlayerChoiceState>();
     }
 }

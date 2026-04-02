@@ -92,7 +92,7 @@ using UnityEngine;
         {
             Kill();
             activeTween = cardTransform
-                .DOMoveY(cardTransform.position.y + hoverHeight * 0.4f, 0.1f)
+                .DOMoveY(cardTransform.position.y + 1f * 0.4f, 0.1f)
                 .SetEase(Ease.OutSine);
         }
  

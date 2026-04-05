@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd7f2866b5a8d744ba43304276fc169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
-  swipeThreshold: 80
+  swipeThreshold: 100
 --- !u!1 &557392874
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,10 +34,9 @@ using UnityEngine;
         /// </summary>
         public void Deal(List<CardSO> newCards)
         {
-            Debug.Log("Dealing cards...");
             cards.Clear();
             resolvedCards.Clear();
-            FledLastRoom = false;
+            //FledLastRoom = false;
  
             foreach (var card in newCards)
                 if (card != null) cards.Add(card);

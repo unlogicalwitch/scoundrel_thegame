@@ -24,8 +24,11 @@ public class DrawingState : IGameState
         var cards = context.DeckManager.DrawMultiple(RoomSize);
         context.DungeonRoom.Deal(cards);
     }
- 
-    public void Exit(GameContext context) { }
+
+    public void Exit(GameContext context)
+    {
+        context.DungeonRoom.OnRoomReady -= HandleRoomReady;
+    }
 
     private void HandleRoomReady()
     {

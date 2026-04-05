@@ -7,11 +7,24 @@ using UnityEngine;
 /// </summary>
 public class FleeState : IGameState
 {
+    private GameContext context;
+    
     public void Enter(GameContext context)
     {
+        this.context = context;
+        context.DungeonRoom.OnRoomReady += HandleRoomReady;
+        
         var remainingCards = context.DungeonRoom.Flee();
         context.DeckManager.ReturnToDeck((System.Collections.Generic.IList<CardSO>)remainingCards);
     }
- 
-    public void Exit(GameContext context) { }
+
+    public void Exit(GameContext context)
+    {
+        context.DungeonRoom.OnRoomReady -= HandleRoomReady;
+    }
+    
+    private void HandleRoomReady()
+    {
+        context.StateMachine.TransitionTo<DrawingState>();
+    } 
 }

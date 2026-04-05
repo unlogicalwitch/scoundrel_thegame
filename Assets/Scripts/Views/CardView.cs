@@ -54,7 +54,7 @@ public class CardView : MonoBehaviour
     /// Called by RoomView after all cards are instantiated.
     /// </summary>
     /// <param name="onDealComplete">Invoked once the full deal+flip animation finishes.</param>
-    public void DealToSlot(Vector3 targetSlot, int slotIndex, System.Action onDealComplete = null)
+    public void DealToSlot(Vector3 targetSlot, int slotIndex, System.Action onDealComplete)
     {
         slotPosition = targetSlot;
 
@@ -72,11 +72,12 @@ public class CardView : MonoBehaviour
     /// Play the discard animation then destroy this GameObject.
     /// Called by RoomView when the card is resolved.
     /// </summary>
-    public void Discard(Vector3 discardPosition)
+    public void Discard(Vector3 discardPosition, System.Action onDiscardComplete)
     {
         isInteractable = false;
         animator.PlayDiscard(discardPosition, onComplete: () =>
         {
+            onDiscardComplete?.Invoke();
             Destroy(gameObject);
         });
     }

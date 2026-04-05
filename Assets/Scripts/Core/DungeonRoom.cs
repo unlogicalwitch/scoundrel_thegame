@@ -20,11 +20,12 @@ using UnityEngine;
         public event Action<List<CardSO>> OnRoomDealt;
         public event Action OnRoomCleared;
         public event Action OnRoomReady;
+        public event Action OnRoomFled;
  
         // ── Public API ───────────────────────────────────────────────────
  
         public IReadOnlyList<CardSO> Cards => cards.AsReadOnly();
-        public bool HasFled { get; private set; }
+        public bool FledLastRoom { get; private set; }
         public bool IsCleared => cards.Count == 0;
         public int RemainingCards => cards.Count;
  
@@ -36,7 +37,7 @@ using UnityEngine;
             Debug.Log("Dealing cards...");
             cards.Clear();
             resolvedCards.Clear();
-            HasFled = false;
+            FledLastRoom = false;
  
             foreach (var card in newCards)
                 if (card != null) cards.Add(card);
@@ -66,15 +67,11 @@ using UnityEngine;
         {
             OnRoomReady?.Invoke();
         }
-
-        /// <summary>
-        /// Returns all remaining unresolved cards (for returning to deck on flee).
-        /// Marks this room as fled so it cannot be fled again.
-        /// </summary>
+        
         public IReadOnlyList<CardSO> Flee()
         {
-            HasFled = true;
-            var remaining = cards.AsReadOnly();
-            return remaining;
+            FledLastRoom = true;
+            OnRoomFled?.Invoke();
+            return cards.AsReadOnly();
         }
     }

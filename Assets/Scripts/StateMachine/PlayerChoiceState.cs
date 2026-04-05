@@ -9,14 +9,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerChoiceState : IGameState
 {
-    // ── Events ───────────────────────────────────────────────────────
- 
-    /// Fired when a valid card is selected. ResolvingState listens here.
-    public event Action<CardSO> OnCardSelected;
- 
-    /// Fired when the player chooses to flee.
-    public event Action OnFleeRequested;
- 
     // ── State ────────────────────────────────────────────────────────
  
     private GameContext context;
@@ -43,7 +35,7 @@ public class PlayerChoiceState : IGameState
         if (context == null) return;
         if (!context.DungeonRoom.Cards.Contains(card)) return;
  
-        OnCardSelected?.Invoke(card);
+        context.StateMachine.TransitionTo<ResolvingState>();
     }
  
     /// <summary>
@@ -53,9 +45,12 @@ public class PlayerChoiceState : IGameState
     public void RequestFlee()
     {
         if (context == null) return;
-        if (context.DungeonRoom.HasFled) return;
-        if (context.DungeonRoom.RemainingCards == 4) return; // must resolve at least one card first
- 
-        OnFleeRequested?.Invoke();
+        
+        // can only flee without if haven't interact with any cards yet and flee the previous room
+        if (context.DungeonRoom.RemainingCards < 4) return; 
+        if (context.DungeonRoom.FledLastRoom) return;
+
+        Debug.Log("attempt fleeing");
+        context.StateMachine.TransitionTo<FleeState>();
     }
 }

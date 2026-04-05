@@ -13,6 +13,7 @@ public class GameStateMachine : MonoBehaviour
 
     [SerializeField] private int startingHealth = 20;
     [SerializeField] private RoomView roomView;
+    [SerializeField] private InputHandler inputHandler;
 
     // ── State ────────────────────────────────────────────────────────
 
@@ -43,6 +44,8 @@ public class GameStateMachine : MonoBehaviour
         yield return new WaitForSeconds(2f);
         var playerChoiceState = (PlayerChoiceState)states[typeof(PlayerChoiceState)];
         roomView.Initialise(context.DungeonRoom, playerChoiceState);
+        inputHandler?.Initialise(playerChoiceState);
+        
         TransitionTo<DrawingState>();
     }
 
@@ -50,11 +53,11 @@ public class GameStateMachine : MonoBehaviour
 
     private void RegisterStates()
     {
-        states[typeof(DrawingState)]      = new DrawingState();
+        states[typeof(DrawingState)] = new DrawingState();
         states[typeof(PlayerChoiceState)] = new PlayerChoiceState();
-        states[typeof(ResolvingState)]    = new ResolvingState();
-        states[typeof(FleeState)]         = new FleeState();
-        states[typeof(GameOverState)]     = new GameOverState();
+        states[typeof(ResolvingState)] = new ResolvingState();
+        states[typeof(FleeState)] = new FleeState();
+        states[typeof(GameOverState)] = new GameOverState();
     }
 
     public void TransitionTo<T>() where T : IGameState

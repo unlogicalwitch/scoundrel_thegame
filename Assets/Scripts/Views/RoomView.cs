@@ -37,15 +37,17 @@ public class RoomView : MonoBehaviour
         dungeonRoom = room;
         choiceState = choice;
 
-        dungeonRoom.OnRoomDealt    += HandleRoomDealt;
+        dungeonRoom.OnRoomDealt += HandleRoomDealt;
         dungeonRoom.OnCardResolved += HandleCardResolved;
+        dungeonRoom.OnRoomFled += HandleRoomFled;
     }
 
     private void OnDestroy()
     {
         if (dungeonRoom == null) return;
-        dungeonRoom.OnRoomDealt    -= HandleRoomDealt;
+        dungeonRoom.OnRoomDealt -= HandleRoomDealt;
         dungeonRoom.OnCardResolved -= HandleCardResolved;
+        dungeonRoom.OnRoomFled -= HandleRoomFled;
     }
 
     // ── Event handlers ───────────────────────────────────────────────
@@ -91,7 +93,20 @@ public class RoomView : MonoBehaviour
         if (view == null) return;
 
         activeCardViews.Remove(view);
-        view.Discard(discardPosition.position);
+        view.Discard(discardPosition.position, () => {});
+    }
+
+    private void HandleRoomFled()
+    {
+        foreach (var view in activeCardViews)
+            if (view != null)
+            {
+                view.Discard(deckPosition.position, () =>
+                {
+                    dungeonRoom.NotifyRoomReady();
+                });
+            }
+        activeCardViews.Clear();
     }
 
     // ── Helpers ──────────────────────────────────────────────────────

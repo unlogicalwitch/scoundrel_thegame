@@ -13,8 +13,8 @@ using UnityEngine;
         private static readonly float flipDuration = 0.15f;
         private static readonly float discardDuration = 0.25f;
         private static readonly float hoverHeight = 0f;
-        private static readonly Ease  dealEase = Ease.OutCubic;
-        private static readonly Ease  discardEase = Ease.InCubic;
+        private static readonly Ease dealEase = Ease.OutCubic;
+        private static readonly Ease discardEase = Ease.InCubic;
  
         // ── References ───────────────────────────────────────────────────
  
@@ -79,8 +79,8 @@ using UnityEngine;
             Kill();
  
             activeTween = DOTween.Sequence()
-                .Append(cardTransform.DOMove(discardPosition, discardDuration).SetEase(discardEase))
-                .Join(spriteRenderer.DOFade(0f, discardDuration))
+                .Append(cardTransform.DOMove(discardPosition, discardDuration))
+                .Join(spriteRenderer.DOFade(0.0f, discardDuration))
                 .AppendCallback(() => onComplete?.Invoke())
                 .Play();
         }

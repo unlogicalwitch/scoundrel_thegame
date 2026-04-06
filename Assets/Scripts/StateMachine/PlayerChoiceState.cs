@@ -48,11 +48,11 @@ public class PlayerChoiceState : IGameState
         
         // can only flee without if haven't interact with any cards yet and flee the previous room
         if (context.DungeonRoom.RemainingCards < 4) return;
-        if (context.DungeonRoom.FledLastRoom)
-        {
-            Debug.Log("You fled the last room and must face this one");
-            return;
-        }
+        // if (context.DungeonRoom.FledLastRoom)
+        // {
+        //     Debug.Log("You fled the last room and must face this one");
+        //     return;
+        // }
         
         context.StateMachine.TransitionTo<FleeState>();
     }

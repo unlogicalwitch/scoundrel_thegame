@@ -36,7 +36,7 @@ using UnityEngine;
         {
             cards.Clear();
             resolvedCards.Clear();
-            //FledLastRoom = false;
+            FledLastRoom = false;
  
             foreach (var card in newCards)
                 if (card != null) cards.Add(card);

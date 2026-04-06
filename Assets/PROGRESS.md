@@ -15,7 +15,7 @@ Solo dungeon-crawler card game based on the original Scoundrel ruleset by Zach G
 - Unity 6
 - DOTween — card animations
 - UI Toolkit — HUD
-- New Input System — touch/mouse
+- Old Input System — touch/mouse (Input Manager)
 - ScriptableObjects — card data
 
 ## Conventions
@@ -31,7 +31,7 @@ Solo dungeon-crawler card game based on the original Scoundrel ruleset by Zach G
 Data layer        CardSO, CardEnums — immutable definitions, no runtime state
 Core logic        DeckManager, PlayerState, DungeonRoom, GameContext — pure C#
 State machine     GameStateMachine + states — drives the turn loop
-Views             CardView, RoomView, CardAnimator — MonoBehaviours, visuals only
+Views             CardView, RoomView, CardAnimator, InputHandler — MonoBehaviours, visuals + input only
 Infrastructure    ServiceLocator, DeckLoader — startup wiring
 ```
 
@@ -51,21 +51,33 @@ Infrastructure    ServiceLocator, DeckLoader — startup wiring
 
 ### Step 2 — State Machine + Core Logic ✅
 - `IGameState.cs` — Enter(GameContext), Exit(GameContext)
-- `GameContext.cs` — holds DeckManager, PlayerState, DungeonRoom. Passed to every state.
-- `GameStateMachine.cs` — MonoBehaviour. Creates context, registers states, TransitionTo<T>().
+- `GameContext.cs` — holds DeckManager, PlayerState, DungeonRoom, StateMachine. Passed to every state.
+- `GameStateMachine.cs` — MonoBehaviour. Creates context, registers states, TransitionTo<T>(), TransitionToResolving(card). Wires RoomView and InputHandler in Start().
 - `PlayerState.cs` — HP, equipped weapon + durability. Events: OnHealthChanged, OnWeaponChanged, OnDeath.
-- `DungeonRoom.cs` — 4 active cards, HasFled flag. Events: OnRoomDealt, OnCardResolved, OnRoomCleared.
-- `DrawingState.cs` — draws 4 cards into the room. Kills player if deck empty.
-- `PlayerChoiceState.cs` — waits for SelectCard() or RequestFlee() calls from input. Flee valid only after 1+ card resolved and room not previously fled.
-- `ResolvingState.cs` — applies card effect. Monster = stub damage (replaced in step 4). Potion = heal. Weapon = equip.
-- `FleeState.cs` — returns remaining cards to deck bottom.
+- `DungeonRoom.cs` — 4 active cards. Events: OnRoomDealt, OnCardResolved, OnRoomCleared, OnRoomReady, OnRoomFled.
+- `DrawingState.cs` — draws 4 cards, waits for OnRoomReady before transitioning to PlayerChoiceState.
+- `PlayerChoiceState.cs` — waits for SelectCard() or RequestFlee(). Transitions directly via context.StateMachine.
+- `ResolvingState.cs` — applies card effect, transitions to GameOverState / DrawingState / PlayerChoiceState.
+- `FleeState.cs` — returns remaining cards to deck bottom, transitions to DrawingState.
 - `GameOverState.cs` — fires OnGameOver with Death or Victory result.
 - `ServiceLocator.cs` — static Register<T> / Get<T>.
 
-### Step 3 — Views + Animations ✅
-- `CardAnimator.cs` — pure C#. DOTween sequences: deal arc (staggered), flip (scaleX swap), discard (move + fade), hover enter/exit, invalid tap punch.
-- `CardView.cs` — MonoBehaviour on card prefab. Initialise → DealToSlot → Discard. OnMouseDown/Enter/Exit handle input. Exposes CardData for RoomView matching.
-- `RoomView.cs` — manages 4 slot Transforms, deck + discard positions. Subscribes to DungeonRoom events, instantiates/destroys CardViews.
+### Step 3 — Views + Animations + Input ✅
+- `CardAnimator.cs` — DOTween sequences: deal arc (staggered), flip (scaleX swap), discard (move + fade), hover, invalid punch.
+- `CardView.cs` — Initialise → DealToSlot(onReady callback) → Discard. OnMouseDown/Enter/Exit handle input.
+- `RoomView.cs` — counts deal animations, calls NotifyRoomReady() when last card ready. Handles OnRoomFled to clear board visually.
+- `InputHandler.cs` — swipe down → RequestFlee(). Mouse in editor, touch on Android.
+
+### Unity project notes
+- Input Handling: Input Manager (Old) — set in Project Settings → Player
+- Cards: world-space GameObjects with SpriteRenderer + Collider2D
+- HUD: UI Toolkit (unaffected by camera shake)
+
+---
+
+## Flee Rules (Scoundrel)
+- Can only flee if no cards touched yet in the room (RemainingCount == 4)
+- Cannot flee two rooms in a row (FledLastRoom flag — to be added to PlayerState in step 4)
 
 ---
 
@@ -73,10 +85,11 @@ Infrastructure    ServiceLocator, DeckLoader — startup wiring
 
 ### Step 4 — CombatResolver 🔲
 Weapon damage logic and durability rules:
-- Weapon can fight a monster only if monster value < weapon value
-- After fighting, weapon durability = defeated monster's value (can only fight weaker monsters after)
-- Player can always fight barehanded (take full damage) regardless of weapon
+- Weapon fights a monster only if monster value < weapon value
+- After fighting with weapon, durability = defeated monster's value (can only fight weaker monsters after)
+- Player can always fight barehanded (take full damage) even with weapon equipped
 - Potions only heal if the previous card resolved was not also a potion
+- Add FledLastRoom to PlayerState, reset on room clear
 
 ### Step 5 — HUD 🔲
 UI Toolkit — HP bar, deck counter, weapon slot display

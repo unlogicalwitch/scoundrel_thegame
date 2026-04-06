@@ -34,3 +34,18 @@ public enum CardCategory
     Weapon,     // Diamonds
     Special     // Joker — reserved
 }
+
+public enum ZoneType
+{
+    None, 
+    Weapon, 
+    Barehanded,
+    Use
+}
+
+public enum FightChoice
+{
+    None, 
+    WithWeapon,
+    Barehanded
+}

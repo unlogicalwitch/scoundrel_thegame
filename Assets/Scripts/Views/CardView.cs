@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -22,17 +23,20 @@ public class CardView : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Vector3 slotPosition;
     private bool isInteractable;
+    private bool isDragging;
 
     public CardSO CardData => cardData;
 
     // ── References set by RoomView ────────────────────────────────────
 
     private PlayerChoiceState choiceState;
+    private Camera mainCamera;
 
     // ── Setup ────────────────────────────────────────────────────────
 
     private void Awake()
     {
+        mainCamera = Camera.main;
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = new CardAnimator(transform, spriteRenderer);
     }
@@ -47,6 +51,14 @@ public class CardView : MonoBehaviour
         isInteractable = false;
 
         spriteRenderer.sprite = backSprite;
+    }
+
+    private void Update()
+    {
+        if (!isDragging) return;
+
+        Vector3 worldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        transform.position = worldPos;
     }
 
     /// <summary>
@@ -82,12 +94,18 @@ public class CardView : MonoBehaviour
         });
     }
 
+    public void Snapback(Vector3 targetPosition)
+    {
+        
+    }
+
     // ── Input ────────────────────────────────────────────────────────
 
     private void OnMouseDown()
     {
         if (!isInteractable) return;
-        choiceState?.SelectCard(cardData);
+        isDragging = true;
+        //dragResolver?.OnDragStarted(this);
     }
 
     private void OnMouseEnter()
@@ -96,6 +114,13 @@ public class CardView : MonoBehaviour
         
         if (!isInteractable) return;
         animator.PlayHoverEnter();
+    }
+    
+    private void OnMouseUp()
+    {
+        if (!isDragging) return;
+        isDragging = false;
+        //dragResolver?.OnDragReleased(this, Input.mousePosition);
     }
 
     private void OnMouseExit()

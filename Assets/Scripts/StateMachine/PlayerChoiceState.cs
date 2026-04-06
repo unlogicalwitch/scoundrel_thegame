@@ -30,7 +30,7 @@ public class PlayerChoiceState : IGameState
     /// <summary>
     /// Call this when the player taps a card in the room.
     /// </summary>
-    public void SelectCard(CardSO card)
+    public void SelectCard(CardSO card, FightChoice fightChoice)
     {
         if (context == null) return;
         if (!context.DungeonRoom.Cards.Contains(card)) return;

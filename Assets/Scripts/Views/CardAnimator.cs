@@ -84,6 +84,16 @@ using UnityEngine;
                 .AppendCallback(() => onComplete?.Invoke())
                 .Play();
         }
+        
+        public void PlaySnapBack(Vector3 targetPosition, System.Action onComplete = null)
+        {
+            Kill();
+ 
+            activeTween = DOTween.Sequence()
+                .Append(cardTransform.DOMove(targetPosition, 0.25f).SetEase(Ease.OutBack))
+                .AppendCallback(() => onComplete?.Invoke())
+                .Play();
+        }
  
         /// <summary>
         /// Hover the card up slightly when the player's finger is over it.

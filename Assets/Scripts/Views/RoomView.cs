@@ -26,16 +26,18 @@ public class RoomView : MonoBehaviour
     private readonly List<CardView> activeCardViews = new(4);
     private DungeonRoom dungeonRoom;
     private PlayerChoiceState choiceState;
+    private DragResolver dragResolver;
 
     // ── Setup ────────────────────────────────────────────────────────
 
     /// <summary>
     /// Called by GameStateMachine after context is ready.
     /// </summary>
-    public void Initialise(DungeonRoom room, PlayerChoiceState choice)
+    public void Initialise(DungeonRoom room, PlayerChoiceState choice, DragResolver resolver)
     {
         dungeonRoom = room;
         choiceState = choice;
+        dragResolver = resolver;
 
         dungeonRoom.OnRoomDealt += HandleRoomDealt;
         dungeonRoom.OnCardResolved += HandleCardResolved;
@@ -61,10 +63,11 @@ public class RoomView : MonoBehaviour
 
         for (int i = 0; i < totalCards; i++)
         {
-            var go   = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
+            var go = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
             var view = go.GetComponent<CardView>();
-
-            view.Initialise(cards[i], choiceState, cardBackSprite);
+            
+            // Cards initialisation
+            view.Initialise(cards[i], choiceState, dragResolver, cardBackSprite);
             view.DealToSlot(cardSlots[i].position, i, onDealComplete: () =>
             {
                 completedCount++;

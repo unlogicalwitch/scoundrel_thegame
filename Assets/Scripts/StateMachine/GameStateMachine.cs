@@ -14,6 +14,7 @@ public class GameStateMachine : MonoBehaviour
     [SerializeField] private int startingHealth = 20;
     [SerializeField] private RoomView roomView;
     [SerializeField] private InputHandler inputHandler;
+    [SerializeField] private DragResolver dragResolver;
 
     // ── State ────────────────────────────────────────────────────────
 
@@ -41,9 +42,10 @@ public class GameStateMachine : MonoBehaviour
         
         RegisterStates();
         
-        yield return new WaitForSeconds(2f);
+        // Start the game with player choice state
+        yield return new WaitForSeconds(1.5f);
         var playerChoiceState = (PlayerChoiceState)states[typeof(PlayerChoiceState)];
-        roomView.Initialise(context.DungeonRoom, playerChoiceState);
+        roomView.Initialise(context.DungeonRoom, playerChoiceState, dragResolver);
         inputHandler?.Initialise(playerChoiceState);
         
         TransitionTo<DrawingState>();

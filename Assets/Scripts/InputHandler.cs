@@ -50,7 +50,8 @@ public class InputHandler : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && tracking)
         {
             tracking = false;
-            EvaluateSwipe((Vector2)Input.mousePosition - touchStart);
+            if (!IsPointerOverCard())
+                EvaluateSwipe((Vector2)Input.mousePosition - touchStart);
         }
     }
 
@@ -71,7 +72,8 @@ public class InputHandler : MonoBehaviour
 
             case TouchPhase.Ended when tracking:
                 tracking = false;
-                EvaluateSwipe(touch.position - touchStart);
+                if (!IsPointerOverCard())
+                    EvaluateSwipe(touch.position - touchStart);
                 break;
 
             case TouchPhase.Canceled:
@@ -93,5 +95,14 @@ public class InputHandler : MonoBehaviour
             Debug.Log("[InputHandler] flee input received" );
             choiceState?.RequestFlee();
         }
+    }
+    
+    private bool IsPointerOverCard()
+    {
+        var hit = Physics2D.Raycast(
+            Camera.main.ScreenToWorldPoint(Input.mousePosition), 
+            Vector2.zero
+        );
+        return hit.collider != null && hit.collider.GetComponent<CardView>() != null;
     }
 }

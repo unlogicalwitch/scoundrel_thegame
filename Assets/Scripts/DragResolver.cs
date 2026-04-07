@@ -16,7 +16,7 @@ using UnityEngine;
         // ── Runtime ──────────────────────────────────────────────────────
  
         private PlayerChoiceState choiceState;
-        private PlayerState       playerState;
+        private PlayerState playerState;
  
         // ── Setup ────────────────────────────────────────────────────────
  
@@ -59,26 +59,27 @@ using UnityEngine;
         /// </summary>
         public void OnDragReleased(CardView card, Vector2 screenPosition)
         {
-            var hitZone = zoneView.GetZoneAt(screenPosition);
-            zoneView.HideAll();
+            card.SnapBack();
+            //var hitZone = zoneView.GetZoneAt(screenPosition);
+            //zoneView.HideAll();
  
-            switch (hitZone)
-            {
-                case ZoneType.Weapon:
-                    choiceState.SelectCard(card.CardData, FightChoice.WithWeapon);
-                    break;
- 
-                case ZoneType.Barehanded:
-                    choiceState.SelectCard(card.CardData, FightChoice.Barehanded);
-                    break;
- 
-                case ZoneType.Use:
-                    choiceState.SelectCard(card.CardData, FightChoice.None);
-                    break;
- 
-                case ZoneType.None:
-                    card.SnapBack();
-                    break;
-            }
+            // switch (hitZone)
+            // {
+            //     case ZoneType.Weapon:
+            //         choiceState.SelectCard(card.CardData, FightChoice.WithWeapon);
+            //         break;
+            //
+            //     case ZoneType.Barehanded:
+            //         choiceState.SelectCard(card.CardData, FightChoice.Barehanded);
+            //         break;
+            //
+            //     case ZoneType.Use:
+            //         choiceState.SelectCard(card.CardData, FightChoice.None);
+            //         break;
+            //
+            //     case ZoneType.None:
+            //         card.SnapBack();
+            //         break;
+            // }
         }
     }

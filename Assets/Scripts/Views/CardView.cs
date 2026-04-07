@@ -21,6 +21,7 @@ public class CardView : MonoBehaviour
     private CardSO cardData;
     private CardAnimator animator;
     private SpriteRenderer spriteRenderer;
+    private DragResolver dragResolver;
     private Vector3 slotPosition;
     private bool isInteractable;
     private bool isDragging;
@@ -44,10 +45,11 @@ public class CardView : MonoBehaviour
     /// <summary>
     /// Called by RoomView immediately after instantiation.
     /// </summary>
-    public void Initialise(CardSO data, PlayerChoiceState choice, Sprite backSprite)
+    public void Initialise(CardSO data, PlayerChoiceState choice, DragResolver dragResolver, Sprite backSprite)
     {
         cardData = data;
         choiceState = choice;
+        this.dragResolver = dragResolver;
         isInteractable = false;
 
         spriteRenderer.sprite = backSprite;
@@ -94,39 +96,33 @@ public class CardView : MonoBehaviour
         });
     }
 
-    public void Snapback(Vector3 targetPosition)
+    public void SnapBack()
     {
-        
+        isInteractable = false;
+        animator.PlaySnapBack(slotPosition, onComplete: () =>
+        {
+            isInteractable = true;
+        });
     }
 
     // ── Input ────────────────────────────────────────────────────────
 
     private void OnMouseDown()
     {
+        Debug.Log($"[CardView] Mouse Down: {gameObject.name}");
         if (!isInteractable) return;
-        isDragging = true;
-        //dragResolver?.OnDragStarted(this);
-    }
-
-    private void OnMouseEnter()
-    {
-        Debug.Log($"[CardView] Mouse enter: {gameObject.name}");
         
-        if (!isInteractable) return;
-        animator.PlayHoverEnter();
+        dragResolver?.OnDragStarted(this);
+        isDragging = true;
     }
     
     private void OnMouseUp()
     {
+        Debug.Log($"[CardView] Mouse Up: {gameObject.name}");
         if (!isDragging) return;
+        
+        dragResolver?.OnDragReleased(this, Input.mousePosition);
         isDragging = false;
-        //dragResolver?.OnDragReleased(this, Input.mousePosition);
-    }
-
-    private void OnMouseExit()
-    {
-        if (!isInteractable) return;
-        animator.PlayHoverExit(slotPosition);
     }
 
     // ── Cleanup ──────────────────────────────────────────────────────

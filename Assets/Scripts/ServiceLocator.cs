@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Minimal service locator. Register services in Bootstrap,
@@ -22,6 +23,7 @@ public static class ServiceLocator
             return (T)service;
 
         Debug.LogError($"[ServiceLocator] Service {typeof(T).Name} not found. Did you register it in Bootstrap?");
+        SceneManager.LoadScene("Bootstrap");
         return null;
     }
 

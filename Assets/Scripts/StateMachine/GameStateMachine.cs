@@ -47,6 +47,7 @@ public class GameStateMachine : MonoBehaviour
         var playerChoiceState = (PlayerChoiceState)states[typeof(PlayerChoiceState)];
         roomView.Initialise(context.DungeonRoom, playerChoiceState, dragResolver);
         inputHandler?.Initialise(playerChoiceState);
+        dragResolver?.Initialise(playerChoiceState, context.PlayerState);
         
         TransitionTo<DrawingState>();
     }

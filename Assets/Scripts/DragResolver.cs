@@ -35,7 +35,8 @@ using UnityEngine;
         public void OnDragStarted(CardView card)
         {
             if (choiceState == null) return;
- 
+            
+            Debug.Log("check card");
             switch (card.CardData.Category)
             {
                 case CardCategory.Monster:
@@ -61,7 +62,7 @@ using UnityEngine;
         {
             card.SnapBack();
             //var hitZone = zoneView.GetZoneAt(screenPosition);
-            //zoneView.HideAll();
+            zoneView.HideAll();
  
             // switch (hitZone)
             // {

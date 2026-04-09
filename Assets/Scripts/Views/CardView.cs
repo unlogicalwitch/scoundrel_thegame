@@ -61,6 +61,8 @@ public class CardView : MonoBehaviour
 
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
         transform.position = worldPos;
+
+        dragResolver?.OnDragUpdated(Input.mousePosition);
     }
 
     /// <summary>

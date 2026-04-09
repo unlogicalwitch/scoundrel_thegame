@@ -36,7 +36,6 @@ using UnityEngine;
         {
             if (choiceState == null) return;
             
-            Debug.Log("check card");
             switch (card.CardData.Category)
             {
                 case CardCategory.Monster:
@@ -53,6 +52,15 @@ using UnityEngine;
             }
         }
  
+        /// <summary>
+        /// Called by CardView every frame while dragging.
+        /// Updates the highlight on whichever zone is currently under the pointer.
+        /// </summary>
+        public void OnDragUpdated(Vector2 screenPosition)
+        {
+            zoneView.UpdateHighlight(screenPosition);
+        }
+
         /// <summary>
         /// Called by CardView on finger release.
         /// Checks which zone was hit and triggers the corresponding action,

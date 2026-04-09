@@ -2,14 +2,19 @@
     display: flex;
     opacity: 1;
     transition-property: opacity;
-    transition-duration: 0.2s;
+    transition-duration: 0.1s;
     transition-timing-function: ease-out;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    bottom: 0%;
+    right: 0%;
+    left: 0%;
     position: absolute;
     flex-direction: row;
     height: 25%;
+    justify-content: center;
+    top: auto;
+    flex-basis: auto;
+    align-self: auto;
+    align-content: flex-start;
 }
 
 #ZonesContainer.hidden {
@@ -18,51 +23,62 @@
 
 #WeaponZone {
     opacity: 0.75;
-    width: 50%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    top: 0;
+    width: 100%;
     align-items: center;
     justify-content: center;
     align-self: auto;
     align-content: flex-start;
-    height: auto;
+    height: 100%;
     padding-top: 5%;
     padding-right: 5%;
     padding-bottom: 5%;
     padding-left: 5%;
     transition-property: opacity, padding;
     transition-duration: 0.1s, 0.1s;
-    transform-origin: center;
+    display: flex;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #BarehandZone {
     opacity: 0.75;
-    width: 50%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     padding-top: 5%;
     padding-right: 5%;
     padding-bottom: 5%;
     padding-left: 5%;
+    max-width: 100%;
+    align-self: auto;
+    align-content: flex-start;
+    transition-property: opacity, padding;
+    transition-duration: 0.1s, 0.1s;
+    display: flex;
+    max-height: 100%;
+    height: 100%;
 }
 
 #UseZone {
-    transition-property: background-color, border-color;
+    transition-property: opacity, padding;
     transition-duration: 0.1s;
-    width: 50%;
-    opacity: 1;
+    width: 100%;
+    opacity: 0.75;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
     display: flex;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
 }
 
 #WeaponZone.highlighted {
     opacity: 1;
-    width: 50%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    top: 0;
+    width: 100%;
     align-items: center;
     justify-content: center;
     align-self: auto;
@@ -71,20 +87,39 @@
     padding-right: 0%;
     padding-bottom: 0%;
     padding-left: 0%;
+    max-width: 100%;
 }
 
 #BarehandZone.highlighted {
     opacity: 1;
-    width: 50%;
+    width: 100%;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
     padding-top: 0%;
     padding-right: 0%;
     padding-bottom: 0%;
     padding-left: 0%;
-    transition-property: opacity, padding;
-    transition-duration: 0.1s, 0.1s;
 }
 
 #UseZone.highlighted {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 0%;
+    padding-bottom: 0%;
+    padding-right: 0%;
+    padding-top: 0%;
+    max-width: 100%;
+}
+
+#HealthCounter {
+    position: relative;
+    width: 20%;
+    height: 10%;
+    top: 10%;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: flex-start;
 }

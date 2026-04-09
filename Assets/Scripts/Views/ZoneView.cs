@@ -87,9 +87,9 @@ public class ZoneView : MonoBehaviour
     /// </summary>
     public void ShowUseZone()
     {
-        SetZoneVisible(weaponZone,   false);
+        SetZoneVisible(weaponZone, false);
         SetZoneVisible(barehandZone, false);
-        SetZoneVisible(useZone,      true);
+        SetZoneVisible(useZone, true);
         ShowContainer();
     }
 
@@ -202,9 +202,17 @@ public class ZoneView : MonoBehaviour
     /// <summary>
     /// Convert Unity screen position (origin bottom-left, Y up)
     /// to UI Toolkit panel position (origin top-left, Y down).
+    /// worldBound values are in panel pixels, so we must scale by the same
+    /// factor the panel uses to map its reference resolution onto the screen.
     /// </summary>
-    private static Vector2 ScreenToUIPosition(Vector2 screenPos)
+    private Vector2 ScreenToUIPosition(Vector2 screenPos)
     {
-        return new Vector2(screenPos.x, Screen.height - screenPos.y);
+        var root = uiDocument.rootVisualElement;
+        // root.layout gives the panel's logical size (in panel pixels).
+        // Screen.width/height gives the actual screen size.
+        // The ratio is the scale factor applied by the Panel Settings scale mode.
+        float scaleX = root.layout.width  / Screen.width;
+        float scaleY = root.layout.height / Screen.height;
+        return new Vector2(screenPos.x * scaleX, (Screen.height - screenPos.y) * scaleY);
     }
 }

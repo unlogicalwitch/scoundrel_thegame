@@ -39,10 +39,7 @@ using UnityEngine;
             switch (card.CardData.Category)
             {
                 case CardCategory.Monster:
-                    bool hasValidWeapon = playerState.HasWeapon &&
-                                         playerState.EquippedWeapon.Value > card.CardData.Value &&
-                                         playerState.WeaponDurability < card.CardData.Value;
-                    zoneView.ShowMonsterZones(hasValidWeapon);
+                    zoneView.ShowMonsterZones(CombatResolver.CanUseWeapon(playerState, card.CardData));
                     break;
  
                 case CardCategory.Potion:
@@ -69,26 +66,29 @@ using UnityEngine;
         public void OnDragReleased(CardView card, Vector2 screenPosition)
         {
             card.SnapBack();
-            //var hitZone = zoneView.GetZoneAt(screenPosition);
+            var hitZone = zoneView.GetZoneAt(screenPosition);
             zoneView.HideAll();
  
-            // switch (hitZone)
-            // {
-            //     case ZoneType.Weapon:
-            //         choiceState.SelectCard(card.CardData, FightChoice.WithWeapon);
-            //         break;
-            //
-            //     case ZoneType.Barehanded:
-            //         choiceState.SelectCard(card.CardData, FightChoice.Barehanded);
-            //         break;
-            //
-            //     case ZoneType.Use:
-            //         choiceState.SelectCard(card.CardData, FightChoice.None);
-            //         break;
-            //
-            //     case ZoneType.None:
-            //         card.SnapBack();
-            //         break;
-            // }
+            switch (hitZone)
+            {
+                case ZoneType.Weapon:
+                    Debug.Log("[DragResolver] Attacked with weapon");
+                    choiceState.SelectCard(card.CardData, FightChoice.WithWeapon);
+                    break;
+            
+                case ZoneType.Barehanded:
+                    Debug.Log("[DragResolver] Attacked with barehand");
+                    choiceState.SelectCard(card.CardData, FightChoice.Barehanded);
+                    break;
+            
+                case ZoneType.Use:
+                    Debug.Log("[DragResolver] Used cards");
+                    choiceState.SelectCard(card.CardData, FightChoice.None);
+                    break;
+            
+                case ZoneType.None:
+                    card.SnapBack();
+                    break;
+            }
         }
     }

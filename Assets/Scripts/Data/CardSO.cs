@@ -49,7 +49,10 @@ using UnityEngine;
         /// </summary>
         public bool IsRemovedFromScoundrelDeck =>
             suit == Suit.Joker ||
-            (rank == Rank.Ace && (suit == Suit.Hearts || suit == Suit.Diamonds));
+            (rank == Rank.Ace   && (suit == Suit.Hearts || suit == Suit.Diamonds)) ||
+            (rank == Rank.Jack  && (suit == Suit.Hearts || suit == Suit.Diamonds)) ||
+            (rank == Rank.Queen && (suit == Suit.Hearts || suit == Suit.Diamonds)) ||
+            (rank == Rank.King  && (suit == Suit.Hearts || suit == Suit.Diamonds));
  
         public override string ToString() => $"{rank} of {suit} [{Category}, val={Value}]";
     }

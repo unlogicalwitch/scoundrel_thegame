@@ -110,13 +110,13 @@ public class ZoneView : MonoBehaviour
     {
         var uiPos = ScreenToUIPosition(screenPosition);
 
-        if (IsZoneVisible(weaponZone)   && weaponZone.worldBound.Contains(uiPos))
+        if (IsZoneVisible(weaponZone) && weaponZone.worldBound.Contains(uiPos))
             return ZoneType.Weapon;
 
         if (IsZoneVisible(barehandZone) && barehandZone.worldBound.Contains(uiPos))
             return ZoneType.Barehanded;
 
-        if (IsZoneVisible(useZone)      && useZone.worldBound.Contains(uiPos))
+        if (IsZoneVisible(useZone) && useZone.worldBound.Contains(uiPos))
             return ZoneType.Use;
 
         return ZoneType.None;

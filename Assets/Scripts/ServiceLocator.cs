@@ -22,7 +22,7 @@ public static class ServiceLocator
         if (services.TryGetValue(typeof(T), out var service))
             return (T)service;
 
-        Debug.LogError($"[ServiceLocator] Service {typeof(T).Name} not found. Did you register it in Bootstrap?");
+        Debug.LogError($"[ServiceLocator] Service {typeof(T).Name} not found. Back to bootstrap...");
         SceneManager.LoadScene("Bootstrap");
         return null;
     }

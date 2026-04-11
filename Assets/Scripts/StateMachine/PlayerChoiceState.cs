@@ -28,25 +28,26 @@ public class PlayerChoiceState : IGameState
     // ── Input API (called by InputHandler / CardView) ─────────────────
  
     /// <summary>
-    /// Call this when the player taps a card in the room.
+    /// Call this when the player triggers a card in the room.
+    /// Passes the card and fight choice to ResolvingState before transitioning.
     /// </summary>
     public void SelectCard(CardSO card, FightChoice fightChoice)
     {
         if (context == null) return;
         if (!context.DungeonRoom.Cards.Contains(card)) return;
- 
+
+        context.StateMachine.GetState<ResolvingState>()?.SetCard(card, fightChoice);
         context.StateMachine.TransitionTo<ResolvingState>();
     }
  
     /// <summary>
-    /// Call this when the player taps the flee button.
-    /// Only valid if the room has not been fled before.
+    /// Call this when the player chooses to flee
+    /// Only valid if the room has not been fled before
     /// </summary>
     public void RequestFlee()
     {
         if (context == null) return;
         
-        // can only flee without if haven't interact with any cards yet and flee the previous room
         if (context.DungeonRoom.RemainingCards < 4) return;
         // if (context.DungeonRoom.FledLastRoom)
         // {

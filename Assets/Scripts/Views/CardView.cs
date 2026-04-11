@@ -43,7 +43,7 @@ public class CardView : MonoBehaviour
     }
 
     /// <summary>
-    /// Called by RoomView immediately after instantiation.
+    /// Called by RoomView immediately after instantiation
     /// </summary>
     public void Initialise(CardSO data, PlayerChoiceState choice, DragResolver dragResolver, Sprite backSprite)
     {
@@ -82,6 +82,13 @@ public class CardView : MonoBehaviour
                 onDealComplete?.Invoke();
             });
         });
+    }
+
+    public void MoveTo(Vector3 targetPosition)
+    {
+        slotPosition = targetPosition;
+
+        animator.PlayDeal(targetPosition, 0);
     }
 
     /// <summary>

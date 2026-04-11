@@ -20,16 +20,16 @@ public class PlayerState
     // ── Events ───────────────────────────────────────────────────────
 
     public event Action<int, int> OnHealthChanged;  // (current, max)
-    public event Action<CardSO>   OnWeaponChanged;  // null = unequipped
-    public event Action           OnDeath;
+    public event Action<CardSO> OnWeaponChanged;  
+    public event Action OnDeath;
 
     // ── Public API ───────────────────────────────────────────────────
 
-    public int     CurrentHealth    => currentHealth;
-    public CardSO  EquippedWeapon   => equippedWeapon;
-    public int     WeaponDurability => weaponDurability;
-    public bool    IsDead           => currentHealth <= 0;
-    public bool    HasWeapon        => equippedWeapon != null;
+    public int CurrentHealth => currentHealth;
+    public CardSO EquippedWeapon => equippedWeapon;
+    public int WeaponDurability => weaponDurability;
+    public bool IsDead => currentHealth <= 0;
+    public bool HasWeapon => equippedWeapon != null;
 
     public PlayerState(int maxHealth = 20)
     {
@@ -57,8 +57,8 @@ public class PlayerState
     /// Durability resets to 0 (no monster defeated yet with this weapon).
     /// </summary>
     public void EquipWeapon(CardSO weaponCard)
-    {
-        equippedWeapon   = weaponCard;
+    { 
+        equippedWeapon = weaponCard; 
         weaponDurability = 0;
         OnWeaponChanged?.Invoke(equippedWeapon);
     }

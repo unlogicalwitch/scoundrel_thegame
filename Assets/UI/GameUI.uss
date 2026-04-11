@@ -22,7 +22,7 @@
 }
 
 #WeaponZone {
-    opacity: 0.75;
+    opacity: 0.5;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -41,7 +41,7 @@
 }
 
 #BarehandZone {
-    opacity: 0.75;
+    opacity: 0.5;
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -63,7 +63,7 @@
     transition-property: opacity, padding;
     transition-duration: 0.1s;
     width: 100%;
-    opacity: 0.75;
+    opacity: 0.5;
     justify-content: center;
     align-items: center;
     padding-top: 5%;
@@ -111,6 +111,7 @@
     padding-right: 0%;
     padding-top: 0%;
     max-width: 100%;
+    opacity: 1;
 }
 
 #HealthCounter {

@@ -45,7 +45,7 @@ public class GameStateMachine : MonoBehaviour
         // Start the game with player choice state
         yield return new WaitForSeconds(1.5f);
         var playerChoiceState = (PlayerChoiceState)states[typeof(PlayerChoiceState)];
-        roomView.Initialise(context.DungeonRoom, playerChoiceState, dragResolver);
+        roomView.Initialise(context.DungeonRoom, playerChoiceState, dragResolver, context.PlayerState);
         inputHandler?.Initialise(playerChoiceState);
         dragResolver?.Initialise(playerChoiceState, context.PlayerState);
         
@@ -61,6 +61,19 @@ public class GameStateMachine : MonoBehaviour
         states[typeof(ResolvingState)] = new ResolvingState();
         states[typeof(FleeState)] = new FleeState();
         states[typeof(GameOverState)] = new GameOverState();
+    }
+
+    /// <summary>
+    /// Returns the registered instance of state T. Use this to call SetX() on a
+    /// state before transitioning to it (per the guidelines "carry data via SetX()" rule).
+    /// </summary>
+    public T GetState<T>() where T : class, IGameState
+    {
+        if (states.TryGetValue(typeof(T), out var state))
+            return state as T;
+
+        Debug.LogError($"[GameStateMachine] State {typeof(T).Name} is not registered.");
+        return null;
     }
 
     public void TransitionTo<T>() where T : IGameState

@@ -1,19 +1,27 @@
 using UnityEngine;
 
 /// <summary>
-/// Applies a card's effect to the game state, then decides what comes next:
-/// - Room still has cards → back to PlayerChoiceState
-/// - Room is cleared → DrawingState (next room)
-/// - Player is dead → GameOverState
+/// Applies a card's effect to the game state, then routes to the next state:
+///   - Player is dead          → GameOverState
+///   - Room is cleared         → DrawingState  (deal a fresh room)
+///   - Cards still in room     → PlayerChoiceState  (keep choosing)
 ///
-/// CombatResolver handles the actual damage math (step 4).
-/// For now, monsters deal direct damage equal to their value.
+/// Call SetCard(card, choice) before TransitionTo&lt;ResolvingState&gt;().
+/// CombatResolver handles all monster damage math.
 /// </summary>
 public class ResolvingState : IGameState
 {
     private CardSO pendingCard;
+    private FightChoice pendingChoice;
 
-    public void SetCard(CardSO card) => pendingCard = card;
+    /// <summary>
+    /// Called by PlayerChoiceState before transitioning here.
+    /// </summary>
+    public void SetCard(CardSO card, FightChoice choice)
+    {
+        pendingCard   = card;
+        pendingChoice = choice;
+    }
 
     public void Enter(GameContext context)
     {
@@ -23,26 +31,34 @@ public class ResolvingState : IGameState
             return;
         }
 
-        ResolveCard(context, pendingCard);
-        pendingCard = null;
+        var card   = pendingCard;
+        var choice = pendingChoice;
+        pendingCard   = null;
+        pendingChoice = FightChoice.None;
+
+        ResolveCard(context, card, choice);
+        Route(context);
     }
 
     public void Exit(GameContext context) { }
 
-    // ── Resolution logic ─────────────────────────────────────────────
+    // ── Resolution ───────────────────────────────────────────────────
 
-    private void ResolveCard(GameContext context, CardSO card)
+    private void ResolveCard(GameContext context, CardSO card, FightChoice choice)
     {
         switch (card.Category)
         {
+            // triggers fight
             case CardCategory.Monster:
-                ResolveMonster(context, card);
+                CombatResolver.Resolve(context.PlayerState, card, choice);
                 break;
-
+            
+            // triggers heal
             case CardCategory.Potion:
                 context.PlayerState.Heal(card.Value);
                 break;
-
+            
+            // triggers weapon equip
             case CardCategory.Weapon:
                 context.PlayerState.EquipWeapon(card);
                 break;
@@ -56,9 +72,22 @@ public class ResolvingState : IGameState
         context.DeckManager.Discard(card);
     }
 
-    private void ResolveMonster(GameContext context, CardSO monster)
+    // ── Routing ──────────────────────────────────────────────────────
+
+    private void Route(GameContext context)
     {
-        // Stub: direct damage. CombatResolver replaces this in step 4.
-        context.PlayerState.TakeDamage(monster.Value);
+        if (context.PlayerState.IsDead)
+        {
+            context.StateMachine.TransitionTo<GameOverState>();
+            return;
+        }
+
+        if (context.DungeonRoom.IsCleared)
+        {
+            context.StateMachine.TransitionTo<DrawingState>();
+            return;
+        }
+
+        context.StateMachine.TransitionTo<PlayerChoiceState>();
     }
 }

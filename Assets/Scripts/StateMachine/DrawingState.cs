@@ -16,8 +16,7 @@ public class DrawingState : IGameState
         
         if (context.DeckManager.IsDeckEmpty)
         {
-            // No cards left — trigger game over
-            context.PlayerState.TakeDamage(context.PlayerState.CurrentHealth);
+            context.StateMachine.TransitionTo<GameOverState>();
             return;
         }
  

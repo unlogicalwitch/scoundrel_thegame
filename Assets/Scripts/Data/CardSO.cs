@@ -33,8 +33,8 @@ using UnityEngine;
             Suit.Clubs    => CardCategory.Monster,
             Suit.Hearts   => CardCategory.Potion,
             Suit.Diamonds => CardCategory.Weapon,
-            Suit.Joker    => CardCategory.Special,
-            _             => CardCategory.Special
+            // Suit.Joker    => CardCategory.Special,
+            // _             => CardCategory.Special
         };
  
         /// <summary>

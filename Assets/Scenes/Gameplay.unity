@@ -929,9 +929,10 @@ MonoBehaviour:
   - {fileID: 83620959}
   - {fileID: 589420592}
   - {fileID: 1999505396}
-  deckPosition: {fileID: 988011358}
-  discardPosition: {fileID: 557392875}
+  drawDeck: {fileID: 988011358}
+  discardDeck: {fileID: 557392875}
   weaponSlot: {fileID: 222633336}
+  slainCardSpacing: 0
   cardPrefab: {fileID: 6860727137514674953, guid: 90085a92e1e05624b87fba09f2713906, type: 3}
   cardBackSprite: {fileID: -1184517762903133153, guid: 41130643175eebc4785df80bf241d431, type: 3}
 --- !u!4 &810030970

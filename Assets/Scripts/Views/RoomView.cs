@@ -4,49 +4,53 @@ using UnityEngine;
 /// <summary>
 /// Manages the 4 card slot positions in the dungeon room AND the weapon slot.
 /// Listens to DungeonRoom events and instantiates / removes CardViews accordingly.
-/// Listens to PlayerState.OnWeaponChanged to animate weapon cards in/out of the weapon slot.
-/// Once all deal animations finish, calls DungeonRoom.NotifyRoomReady() so
-/// DrawingState can transition to PlayerChoiceState.
-/// Attach to a persistent GameObject in the Game scene.
+///
+/// Two deal scenarios:
+///   OnRoomDealt    — full fresh deal: clear all views, spawn 4 new cards.
+///   OnRoomRefilled — 3 cards resolved, 1 survivor stays: spawn 3 new cards
+///                    into the empty slots only; the surviving CardView is untouched.
+///
+/// Once all deal/refill animations finish, calls DungeonRoom.NotifyRoomReady()
+/// so DrawingState can transition to PlayerChoiceState.
 /// </summary>
 public class RoomView : MonoBehaviour
 {
     // ── Inspector ────────────────────────────────────────────────────
 
     [Header("Layout")]
-    [SerializeField] private Transform[] cardSlots;      // 4 empty GameObjects marking slot positions
-    [SerializeField] private Transform deckPosition;     // where cards fly from
-    [SerializeField] private Transform discardPosition;  // where resolved cards fly to
-    [SerializeField] private Transform weaponSlot;       // where the equipped weapon card sits
+    [SerializeField] private Transform[] cardSlots;
+    [SerializeField] private Transform drawDeck;
+    [SerializeField] private Transform discardDeck;
+    [SerializeField] private Transform weaponSlot;
+    [SerializeField] private float slainCardSpacing;
 
     [Header("Prefabs & Assets")]
-    [SerializeField] private GameObject cardPrefab;      // has CardView + SpriteRenderer + Collider2D
+    [SerializeField] private GameObject cardPrefab;
     [SerializeField] private Sprite cardBackSprite;
 
     // ── Runtime ──────────────────────────────────────────────────────
 
-    private readonly List<CardView> activeCardViews = new(4);
+    // Index-aligned with cardSlots: null means the slot is empty.
+    private readonly CardView[] slotViews = new CardView[4];
+
     private DungeonRoom dungeonRoom;
     private PlayerChoiceState choiceState;
     private DragResolver dragResolver;
     private PlayerState playerState;
 
-    // Weapon slot — at most one CardView lives here at a time
     private CardView equippedWeaponView;
 
     // ── Setup ────────────────────────────────────────────────────────
 
-    /// <summary>
-    /// Called by GameStateMachine after context is ready.
-    /// </summary>
     public void Initialise(DungeonRoom room, PlayerChoiceState choice, DragResolver resolver, PlayerState player)
     {
-        dungeonRoom = room;
-        choiceState = choice;
+        dungeonRoom  = room;
+        choiceState  = choice;
         dragResolver = resolver;
-        playerState = player;
+        playerState  = player;
 
         dungeonRoom.OnRoomDealt    += HandleRoomDealt;
+        dungeonRoom.OnRoomRefilled += HandleRoomRefilled;
         dungeonRoom.OnCardResolved += HandleCardResolved;
         dungeonRoom.OnRoomFled     += HandleRoomFled;
 
@@ -57,99 +61,137 @@ public class RoomView : MonoBehaviour
     {
         if (dungeonRoom != null)
         {
-            dungeonRoom.OnRoomDealt -= HandleRoomDealt;
+            dungeonRoom.OnRoomDealt    -= HandleRoomDealt;
+            dungeonRoom.OnRoomRefilled -= HandleRoomRefilled;
             dungeonRoom.OnCardResolved -= HandleCardResolved;
-            dungeonRoom.OnRoomFled -= HandleRoomFled;
+            dungeonRoom.OnRoomFled     -= HandleRoomFled;
         }
 
         if (playerState != null)
             playerState.OnWeaponChanged -= HandleWeaponChanged;
     }
 
-    // ── Event handlers ──────────────────────────────────────────
+    // ── Event handlers ───────────────────────────────────────────────
 
+    /// <summary>
+    /// Full fresh deal — clear everything and spawn 4 new cards.
+    /// </summary>
     private void HandleRoomDealt(List<CardSO> cards)
     {
         ClearRoom();
 
-        int totalCards = Mathf.Min(cards.Count, cardSlots.Length);
+        int total = Mathf.Min(cards.Count, cardSlots.Length);
         int completedCount = 0;
 
-        for (int i = 0; i < totalCards; i++)
+        for (int i = 0; i < total; i++)
         {
-            var go = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
-            var view = go.GetComponent<CardView>();
-            
-            // Cards initialisation
-            view.Initialise(cards[i], choiceState, dragResolver, cardBackSprite);
-            view.DealToSlot(cardSlots[i].position, i, onDealComplete: () =>
+            var view = SpawnCard(cards[i], cardSlots[i].position, i, () =>
             {
                 completedCount++;
-                if (completedCount >= totalCards)
+                if (completedCount >= total)
                     dungeonRoom.NotifyRoomReady();
             });
-
-            activeCardViews.Add(view);
+            slotViews[i] = view;
         }
+    }
+
+    /// <summary>
+    /// Refill — 1 survivor stays in its slot; animate 3 new cards into the empty slots.
+    /// </summary>
+    private void HandleRoomRefilled(List<CardSO> newCards)
+    {
+        // Collect the indices of empty slots (no surviving CardView).
+        var emptySlots = new List<int>(3);
+        for (int i = 0; i < cardSlots.Length; i++)
+        {
+            if (slotViews[i] == null)
+                emptySlots.Add(i);
+        }
+
+        int total = Mathf.Min(newCards.Count, emptySlots.Count);
+        int completedCount = 0;
+
+        for (int j = 0; j < total; j++)
+        {
+            int slotIndex = emptySlots[j];
+            var view = SpawnCard(newCards[j], cardSlots[slotIndex].position, j, () =>
+            {
+                completedCount++;
+                if (completedCount >= total)
+                    dungeonRoom.NotifyRoomReady();
+            });
+            slotViews[slotIndex] = view;
+        }
+
+        // Edge case: no empty slots (shouldn't happen in normal play).
+        if (total == 0)
+            dungeonRoom.NotifyRoomReady();
     }
 
     private void HandleCardResolved(CardSO card)
     {
-        var view = activeCardViews.Find(v => v != null);
-        
-        foreach (var cardView in activeCardViews)
+        // Find the slot that holds this card.
+        int slotIndex = -1;
+        for (int i = 0; i < slotViews.Length; i++)
         {
-            if (cardView != null && cardView.CardData == card)
+            if (slotViews[i] != null && slotViews[i].CardData == card)
             {
-                view = cardView;
+                slotIndex = i;
                 break;
             }
         }
 
-        if (view == null) return;
+        if (slotIndex < 0) return;
 
-        activeCardViews.Remove(view);
+        var view = slotViews[slotIndex];
+        slotViews[slotIndex] = null;
+
+        if (card.Category != CardCategory.Weapon)
+        {
+            view.Discard(discardDeck.position, () => { });
+        }
     }
 
     private void HandleRoomFled()
     {
-        foreach (var view in activeCardViews)
+        for (int i = 0; i < slotViews.Length; i++)
+        {
+            var view = slotViews[i];
             if (view != null)
             {
-                view.Discard(deckPosition.position, () =>
+                view.Discard(drawDeck.position, () =>
                 {
                     dungeonRoom.NotifyRoomReady();
                 });
+                slotViews[i] = null;
             }
-        activeCardViews.Clear();
+        }
     }
 
-    /// <summary>
-    /// Called when PlayerState.OnWeaponChanged fires.
-    /// newWeapon is null when the weapon is unequipped (e.g. bare-hand fight).
-    /// </summary>
     private void HandleWeaponChanged(CardSO newWeapon)
     {
-        var newView = activeCardViews.Find(v => v != null);
-        
-        foreach (var cardView in activeCardViews)
+        Debug.Log("[RoomView] Weapon changed: " + newWeapon.Rank + " " + newWeapon.Suit);
+
+        CardView newView = null;
+        for (int i = 0; i < slotViews.Length; i++)
         {
-            if (cardView != null && cardView.CardData == newWeapon)
+            if (slotViews[i] != null && slotViews[i].CardData == newWeapon)
             {
-                newView = cardView;
+                newView = slotViews[i];
                 break;
             }
         }
-        
-        // Discard the old weapon card first, then show the new one (if any).
+
+        if (newView == null) return;
+
         if (equippedWeaponView != null)
         {
             var oldView = equippedWeaponView;
             equippedWeaponView = null;
 
-            oldView.Discard(discardPosition.position, onDiscardComplete: () =>
+            oldView.Discard(discardDeck.position, onDiscardComplete: () =>
             {
-                newView.DealToSlot(weaponSlot.position, 0, onDealComplete: () => {});
+                newView.MoveTo(weaponSlot.position);
                 equippedWeaponView = newView;
             });
         }
@@ -162,11 +204,31 @@ public class RoomView : MonoBehaviour
 
     // ── Helpers ──────────────────────────────────────────────────────
 
+    private CardView SpawnCard(CardSO cardData, Vector3 targetSlotPosition, int dealIndex, System.Action onComplete)
+    {
+        var go   = Instantiate(cardPrefab, drawDeck.position, Quaternion.identity);
+        var view = go.GetComponent<CardView>();
+        view.Initialise(cardData, choiceState, dragResolver, cardBackSprite);
+        view.DealToSlot(targetSlotPosition, dealIndex, onDealComplete: onComplete);
+        return view;
+    }
+
     private void ClearRoom()
     {
-        foreach (var view in activeCardViews)
-            if (view != null) Destroy(view.gameObject);
+        for (int i = 0; i < slotViews.Length; i++)
+        {
+            if (slotViews[i] != null)
+            {
+                Destroy(slotViews[i].gameObject);
+                slotViews[i] = null;
+            }
+        }
 
-        activeCardViews.Clear();
+        // Also destroy the equipped weapon view if present.
+        if (equippedWeaponView != null)
+        {
+            Destroy(equippedWeaponView.gameObject);
+            equippedWeaponView = null;
+        }
     }
 }

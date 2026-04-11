@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public static class CombatResolver
 {
     /// <summary>
@@ -8,7 +10,7 @@ public static class CombatResolver
     /// <param name="choice">Whether the player chose to fight with their weapon or barehanded.</param>
     public static void Resolve(PlayerState player, CardSO monster, FightChoice choice)
     {
-        if (choice == FightChoice.WithWeapon && CanUseWeapon(player, monster))
+        if (choice == FightChoice.WithWeapon)
         {
             // Weapon fights the monster. Player absorbs any overflow damage.
             int overflow = monster.Value - player.EquippedWeapon.Value;
@@ -17,12 +19,12 @@ public static class CombatResolver
 
             // Durability tightens to this monster's value regardless of outcome.
             player.SetWeaponDurability(monster.Value);
+            Debug.Log("[CombatResolver] Weapon durability: " + monster.Value);
         }
         else
         {
             // Barehanded (or durability gate blocked weapon use): full damage, weapon unequipped.
             player.TakeDamage(monster.Value);
-            player.UnequipWeapon();
         }
     }
 
@@ -40,8 +42,9 @@ public static class CombatResolver
         // if the weapon has been used before, the monster must be
         // weaker than the last monster it defeated
         // durability == 0 means the weapon is fresh — any monster is valid.
-        if (player.WeaponDurability > 0 && monster.Value >= player.WeaponDurability) return false;
-
+        if (player.WeaponDurability > 0)
+            return false;
+        
         return true;
     }
 }

@@ -92,7 +92,6 @@ public class InputHandler : MonoBehaviour
         // Vertical dominates: |dy| > |dx| means it's more vertical than horizontal
         if (Mathf.Abs(delta.y) > Mathf.Abs(delta.x) && delta.y > 0)
         {
-            Debug.Log("[InputHandler] flee input received" );
             choiceState?.RequestFlee();
         }
     }

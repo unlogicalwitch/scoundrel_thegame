@@ -15,11 +15,11 @@ public class PlayerState
 
     private int currentHealth;
     private CardSO equippedWeapon;
-    private int weaponDurability; // last monster value defeated with this weapon
+    private int weaponDurability; 
 
     // ── Events ───────────────────────────────────────────────────────
 
-    public event Action<int, int> OnHealthChanged;  // (current, max)
+    public event Action<int, int> OnHealthChanged;  
     public event Action<CardSO> OnWeaponChanged;  
     public event Action OnDeath;
 
@@ -57,10 +57,10 @@ public class PlayerState
     /// Durability resets to 0 (no monster defeated yet with this weapon).
     /// </summary>
     public void EquipWeapon(CardSO weaponCard)
-    { 
-        equippedWeapon = weaponCard; 
-        weaponDurability = 0;
-        OnWeaponChanged?.Invoke(equippedWeapon);
+    {
+        equippedWeapon = weaponCard;
+        weaponDurability = 15;
+        OnWeaponChanged?.Invoke(weaponCard);
     }
 
     /// <summary>

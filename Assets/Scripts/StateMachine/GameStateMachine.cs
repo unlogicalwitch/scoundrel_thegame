@@ -89,6 +89,6 @@ public class GameStateMachine : MonoBehaviour
         currentState.Enter(context);
         OnStateChanged?.Invoke(currentState);
 
-        Debug.Log($"[GameStateMachine] → {typeof(T).Name}");
+        //Debug.Log($"[GameStateMachine] → {typeof(T).Name}");
     }
 }

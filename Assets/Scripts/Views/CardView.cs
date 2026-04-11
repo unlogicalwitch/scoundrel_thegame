@@ -18,7 +18,7 @@ public class CardView : MonoBehaviour
 {
     // ── State ────────────────────────────────────────────────────────
 
-    private CardSO cardData;
+    [SerializeField] private CardSO cardData;
     private CardAnimator animator;
     private SpriteRenderer spriteRenderer;
     private DragResolver dragResolver;
@@ -118,23 +118,29 @@ public class CardView : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log($"[CardView] Mouse Down: {gameObject.name}");
         if (!isInteractable) return;
         
         dragResolver?.OnDragStarted(this);
+        spriteRenderer.sortingOrder += 5;
         isDragging = true;
     }
     
     private void OnMouseUp()
     {
-        Debug.Log($"[CardView] Mouse Up: {gameObject.name}");
         if (!isDragging) return;
         
         dragResolver?.OnDragReleased(this, Input.mousePosition);
+        spriteRenderer.sortingOrder -= 5;
         isDragging = false;
     }
 
     // ── Cleanup ──────────────────────────────────────────────────────
 
     private void OnDestroy() => animator.Kill();
+    
+    // Helpers
+    private string CardStringInfo()
+    {
+        return cardData.Rank + " " + cardData.Category;
+    }
 }

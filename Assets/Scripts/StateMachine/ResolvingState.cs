@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Applies a card's effect to the game state, then routes to the next state:
 ///   - Player is dead          → GameOverState
-///   - Room is cleared         → DrawingState  (deal a fresh room)
+///   - Room cleared (1 left)   → DrawingState  (refill with 3 new cards)
 ///   - Cards still in room     → PlayerChoiceState  (keep choosing)
 ///
 /// Call SetCard(card, choice) before TransitionTo&lt;ResolvingState&gt;().
@@ -13,6 +13,7 @@ public class ResolvingState : IGameState
 {
     private CardSO pendingCard;
     private FightChoice pendingChoice;
+    private GameContext context;
 
     /// <summary>
     /// Called by PlayerChoiceState before transitioning here.
@@ -30,6 +31,7 @@ public class ResolvingState : IGameState
             Debug.LogWarning("[ResolvingState] Entered with no card set.");
             return;
         }
+        this.context = context;
 
         var card   = pendingCard;
         var choice = pendingChoice;
@@ -40,7 +42,10 @@ public class ResolvingState : IGameState
         Route(context);
     }
 
-    public void Exit(GameContext context) { }
+    public void Exit(GameContext context)
+    {
+        // nothing to clean up
+    }
 
     // ── Resolution ───────────────────────────────────────────────────
 
@@ -48,17 +53,14 @@ public class ResolvingState : IGameState
     {
         switch (card.Category)
         {
-            // triggers fight
             case CardCategory.Monster:
                 CombatResolver.Resolve(context.PlayerState, card, choice);
                 break;
-            
-            // triggers heal
+
             case CardCategory.Potion:
                 context.PlayerState.Heal(card.Value);
                 break;
-            
-            // triggers weapon equip
+
             case CardCategory.Weapon:
                 context.PlayerState.EquipWeapon(card);
                 break;
@@ -82,7 +84,8 @@ public class ResolvingState : IGameState
             return;
         }
 
-        if (context.DungeonRoom.IsCleared)
+        // 1 card remaining means the room was just cleared → refill via DrawingState
+        if (context.DungeonRoom.RemainingCards == 1)
         {
             context.StateMachine.TransitionTo<DrawingState>();
             return;

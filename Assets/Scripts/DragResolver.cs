@@ -39,7 +39,8 @@ using UnityEngine;
             switch (card.CardData.Category)
             {
                 case CardCategory.Monster:
-                    zoneView.ShowMonsterZones(CombatResolver.CanUseWeapon(playerState, card.CardData));
+                    Debug.Log("[DragResolver] Card value: " + card.CardData.Value);
+                    zoneView.ShowMonsterZones(card.CardData.Value < playerState.WeaponDurability);
                     break;
  
                 case CardCategory.Potion:
@@ -65,7 +66,6 @@ using UnityEngine;
         /// </summary>
         public void OnDragReleased(CardView card, Vector2 screenPosition)
         {
-            card.SnapBack();
             var hitZone = zoneView.GetZoneAt(screenPosition);
             zoneView.HideAll();
  
@@ -82,7 +82,6 @@ using UnityEngine;
                     break;
             
                 case ZoneType.Use:
-                    Debug.Log("[DragResolver] Used cards");
                     choiceState.SelectCard(card.CardData, FightChoice.None);
                     break;
             

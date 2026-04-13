@@ -18,7 +18,8 @@ public static class CombatResolver
                 player.TakeDamage(overflow);
 
             // Durability tightens to this monster's value regardless of outcome.
-            player.SetWeaponDurability(monster.Value);
+            // Pass the monster card so PlayerState can fire OnMonsterSlainWithWeapon.
+            player.SetWeaponDurability(monster.Value, monster);
             Debug.Log("[CombatResolver] Weapon durability: " + monster.Value);
         }
         else

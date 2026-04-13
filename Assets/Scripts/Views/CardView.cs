@@ -114,6 +114,11 @@ public class CardView : MonoBehaviour
         });
     }
 
+    public void LowerLayer()
+    {
+        spriteRenderer.sortingOrder -= 1;
+    }
+
     // ── Input ────────────────────────────────────────────────────────
 
     private void OnMouseDown()

@@ -3,7 +3,7 @@
     <ui:VisualElement name="HUD" style="flex-grow: 1; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">
         <ui:VisualElement name="HealthCounter">
             <ui:Image source="project://database/Assets/Sprites/kenney_board-game-icons/PNG/Double%20(128px)/d20_outline.png?fileID=2800000&amp;guid=6d98679a7f9489642a9578b9e25aca65&amp;type=3#d20_outline" style="right: 0; bottom: 0; left: 0; top: 0; position: absolute;"/>
-            <ui:Label text="20" enable-rich-text="true" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; font-size: 56px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-align: middle-center;"/>
+            <ui:Label name="HealthLabel" text="20" enable-rich-text="true" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; font-size: 56px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-align: middle-center;"/>
         </ui:VisualElement>
         <ui:VisualElement name="ZonesContainer">
             <ui:VisualElement name="WeaponZone">

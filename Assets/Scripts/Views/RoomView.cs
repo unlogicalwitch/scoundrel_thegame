@@ -39,6 +39,11 @@ public class RoomView : MonoBehaviour
     private PlayerState playerState;
 
     private CardView equippedWeaponView;
+    /// <summary>
+    /// The CardView of the last monster slain with the equipped weapon.
+    /// Sits next to the weapon slot and is discarded alongside the weapon.
+    /// </summary>
+    private CardView slainMonsterView;
 
     // ── Setup ────────────────────────────────────────────────────────
 
@@ -54,7 +59,8 @@ public class RoomView : MonoBehaviour
         dungeonRoom.OnCardResolved += HandleCardResolved;
         dungeonRoom.OnRoomFled     += HandleRoomFled;
 
-        playerState.OnWeaponChanged += HandleWeaponChanged;
+        playerState.OnWeaponChanged           += HandleWeaponChanged;
+        playerState.OnMonsterSlainWithWeapon  += HandleMonsterSlainWithWeapon;
     }
 
     private void OnDestroy()
@@ -68,7 +74,10 @@ public class RoomView : MonoBehaviour
         }
 
         if (playerState != null)
-            playerState.OnWeaponChanged -= HandleWeaponChanged;
+        {
+            playerState.OnWeaponChanged          -= HandleWeaponChanged;
+            playerState.OnMonsterSlainWithWeapon -= HandleMonsterSlainWithWeapon;
+        }
     }
 
     // ── Event handlers ───────────────────────────────────────────────
@@ -146,14 +155,27 @@ public class RoomView : MonoBehaviour
         var view = slotViews[slotIndex];
         slotViews[slotIndex] = null;
 
-        if (card.Category != CardCategory.Weapon)
-        {
-            view.Discard(discardDeck.position, () => { });
-        }
+        // Weapons are moved to the weapon slot by HandleWeaponChanged — don't discard here.
+        // Monsters slain with the weapon are moved to the slain-monster slot by
+        // HandleMonsterSlainWithWeapon — don't discard here either; we detect that by
+        // checking whether this view is about to become the pending slain monster.
+        // For all other cards (potions, bare-hand monster kills) → discard normally.
+        if (card.Category == CardCategory.Weapon)
+            return;
+
+        // If this monster card is the one being tracked as the slain-monster view
+        // (set moments earlier by HandleMonsterSlainWithWeapon), skip the discard —
+        // it has already been routed to the weapon area.
+        if (card.Category == CardCategory.Monster && slainMonsterView != null && slainMonsterView.CardData == card)
+            return;
+
+        view.Discard(discardDeck.position, () => { });
     }
 
     private void HandleRoomFled()
     {
+        int completedCount = 0;
+        
         for (int i = 0; i < slotViews.Length; i++)
         {
             var view = slotViews[i];
@@ -161,11 +183,49 @@ public class RoomView : MonoBehaviour
             {
                 view.Discard(drawDeck.position, () =>
                 {
-                    dungeonRoom.NotifyRoomReady();
+                    completedCount++;
+                    if (completedCount >= slotViews.Length)
+                        dungeonRoom.NotifyRoomReady();
                 });
                 slotViews[i] = null;
             }
         }
+    }
+
+    /// <summary>
+    /// Fired by PlayerState when a monster is defeated using the equipped weapon.
+    /// Moves the slain monster's CardView to sit next to the weapon slot.
+    /// Any previously tracked slain monster is discarded first.
+    /// </summary>
+    private void HandleMonsterSlainWithWeapon(CardSO monster)
+    {
+        // Find the CardView for this monster in the room slots.
+        CardView monsterView = null;
+        for (int i = 0; i < slotViews.Length; i++)
+        {
+            if (slotViews[i] != null && slotViews[i].CardData == monster)
+            {
+                monsterView = slotViews[i];
+                // Don't null the slot here — HandleCardResolved will do that.
+                break;
+            }
+        }
+
+        if (monsterView == null) return;
+
+        // Discard any previously slain monster that was sitting next to the weapon.
+        if (slainMonsterView != null)
+        {
+            var oldSlain = slainMonsterView;
+            slainMonsterView = null;
+            oldSlain.Discard(discardDeck.position, () => { });
+        }
+
+        // Track the new slain monster and move it next to the weapon slot.
+        slainMonsterView = monsterView;
+        Vector3 slainPosition = weaponSlot.position + new Vector3(slainCardSpacing, 0f, 0f);
+        monsterView.MoveTo(slainPosition);
+        monsterView.LowerLayer();
     }
 
     private void HandleWeaponChanged(CardSO newWeapon)
@@ -188,6 +248,14 @@ public class RoomView : MonoBehaviour
         {
             var oldView = equippedWeaponView;
             equippedWeaponView = null;
+
+            // Also discard the slain monster that was paired with the old weapon.
+            if (slainMonsterView != null)
+            {
+                var oldSlain = slainMonsterView;
+                slainMonsterView = null;
+                oldSlain.Discard(discardDeck.position, () => { });
+            }
 
             oldView.Discard(discardDeck.position, onDiscardComplete: () =>
             {
@@ -225,10 +293,10 @@ public class RoomView : MonoBehaviour
         }
 
         // Also destroy the equipped weapon view if present.
-        if (equippedWeaponView != null)
-        {
-            Destroy(equippedWeaponView.gameObject);
-            equippedWeaponView = null;
-        }
+        // if (equippedWeaponView != null)
+        // {
+        //     Destroy(equippedWeaponView.gameObject);
+        //     equippedWeaponView = null;
+        // }
     }
 }

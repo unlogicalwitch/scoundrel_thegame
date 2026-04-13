@@ -20,7 +20,12 @@ public class PlayerState
     // ── Events ───────────────────────────────────────────────────────
 
     public event Action<int, int> OnHealthChanged;  
-    public event Action<CardSO> OnWeaponChanged;  
+    public event Action<CardSO> OnWeaponChanged;
+    /// <summary>
+    /// Fired when a monster is defeated using the equipped weapon.
+    /// Carries the slain monster's CardSO so the view can display it next to the weapon.
+    /// </summary>
+    public event Action<CardSO> OnMonsterSlainWithWeapon;
     public event Action OnDeath;
 
     // ── Public API ───────────────────────────────────────────────────
@@ -67,10 +72,13 @@ public class PlayerState
     /// Called by CombatResolver after using a weapon to defeat a monster.
     /// Records the defeated monster's value as durability — the weapon can
     /// only fight monsters weaker than this from now on.
+    /// Also fires OnMonsterSlainWithWeapon so the view can display the slain card next to the weapon.
     /// </summary>
-    public void SetWeaponDurability(int defeatedMonsterValue)
+    public void SetWeaponDurability(int defeatedMonsterValue, CardSO slainMonster = null)
     {
         weaponDurability = defeatedMonsterValue;
+        if (slainMonster != null)
+            OnMonsterSlainWithWeapon?.Invoke(slainMonster);
     }
 
     public void UnequipWeapon()

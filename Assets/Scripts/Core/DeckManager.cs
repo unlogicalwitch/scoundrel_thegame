@@ -29,6 +29,12 @@ public class DeckManager
     /// Fired when the draw pile is empty.
     public event Action OnDeckExhausted;
 
+    /// <summary>
+    /// Fired whenever the draw pile count changes (draw, return to deck, shuffle).
+    /// Passes the new count. Views should use this to update counters.
+    /// </summary>
+    public event Action<int> OnDeckCountChanged;
+
     // ── Public API ───────────────────────────────────────────────────
 
     public int DrawPileCount  => drawPile.Count;
@@ -67,6 +73,7 @@ public class DeckManager
             (drawPile[i], drawPile[j]) = (drawPile[j], drawPile[i]);
         }
         OnDeckShuffled?.Invoke(drawPile.Count);
+        OnDeckCountChanged?.Invoke(drawPile.Count);
     }
 
     /// <summary>
@@ -84,6 +91,7 @@ public class DeckManager
         var card = drawPile[^1];
         drawPile.RemoveAt(drawPile.Count - 1);
         OnCardDrawn?.Invoke(card, drawPile.Count);
+        OnDeckCountChanged?.Invoke(drawPile.Count);
         return card;
     }
 
@@ -119,6 +127,7 @@ public class DeckManager
     {
         for (int i = 0; i < cards.Count; i++)
             drawPile.Insert(i, cards[i]);
+        OnDeckCountChanged?.Invoke(drawPile.Count);
     }
 
     /// <summary>

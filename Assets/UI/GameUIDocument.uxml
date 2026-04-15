@@ -17,4 +17,9 @@
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="EndGamePanel" style="flex-grow: 1;">
+        <ui:Label text="Game Over" name="GameOverResultLabel" style="position: absolute; bottom: 0; right: 0; top: -20%; left: 0; font-size: 53px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-align: middle-center; align-self: auto; justify-content: flex-start; align-content: flex-start;"/>
+        <ui:Label text="Score:" name="ScoreLabel" style="position: absolute; bottom: 0; right: 0; top: -10%; left: 0; font-size: 53px; -unity-font-style: bold; color: rgb(255, 255, 255); -unity-text-align: middle-center; align-self: auto; justify-content: flex-start; align-content: flex-start;"/>
+        <ui:Button text="&#10;" name="RestartButton" style="bottom: auto; right: auto; top: 50%; left: auto; position: absolute; align-self: center; justify-content: flex-start; align-content: flex-start; align-items: stretch; background-image: url(&quot;project://database/Assets/Sprites/kenney_board-game-icons/PNG/Double%20(128px)/arrow_counterclockwise.png?fileID=2800000&amp;guid=fe4c8f589756822419694e27fde76444&amp;type=3#arrow_counterclockwise&quot;); background-color: rgba(188, 188, 188, 0); width: 128px; height: 128px; color: rgba(27, 27, 27, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
+    </ui:VisualElement>
 </ui:UXML>

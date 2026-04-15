@@ -26,9 +26,9 @@ public class DrawDeckView : MonoBehaviour
     /// <summary>
     /// Called by GameStateMachine after GameContext is built.
     /// </summary>
-    public void Initialise(DeckManager deck)
+    public void Start()
     {
-        deckManager = deck;
+        deckManager = ServiceLocator.Get<DeckManager>();
         deckManager.OnDeckCountChanged += HandleDeckCountChanged;
 
         // Sync immediately with the current count.

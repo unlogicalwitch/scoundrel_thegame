@@ -15,7 +15,7 @@ public class DeckManager
 {
     // ── State ────────────────────────────────────────────────────────
 
-    private readonly List<CardSO> drawPile    = new();
+    private readonly List<CardSO> drawPile = new();
     private readonly List<CardSO> discardPile = new();
 
     // ── Events ───────────────────────────────────────────────────────
@@ -37,9 +37,11 @@ public class DeckManager
 
     // ── Public API ───────────────────────────────────────────────────
 
-    public int DrawPileCount  => drawPile.Count;
-    public int DiscardCount   => discardPile.Count;
-    public bool IsDeckEmpty   => drawPile.Count == 0;
+    public int DrawPileCount => drawPile.Count;
+    public int DiscardCount => discardPile.Count;
+    public bool IsDeckEmpty => drawPile.Count == 0;
+    public List<CardSO> DrawPile => drawPile;
+    public List<CardSO> DiscardPile => discardPile;
 
     /// <summary>
     /// Load all CardSO assets, strip non-Scoundrel cards, then shuffle.
@@ -128,6 +130,17 @@ public class DeckManager
         for (int i = 0; i < cards.Count; i++)
             drawPile.Insert(i, cards[i]);
         OnDeckCountChanged?.Invoke(drawPile.Count);
+    }
+
+    /// <summary>
+    /// Moves every remaining card in the draw pile to the discard pile.
+    /// Used by DrawingState when fewer than 4 cards remain and a win is triggered.
+    /// </summary>
+    public void DiscardAll()
+    {
+        discardPile.AddRange(drawPile);
+        drawPile.Clear();
+        OnDeckCountChanged?.Invoke(0);
     }
 
     /// <summary>

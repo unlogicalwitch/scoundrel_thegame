@@ -23,6 +23,9 @@ public class RoomView : MonoBehaviour
     [SerializeField] private Transform discardDeck;
     [SerializeField] private Transform weaponSlot;
     [SerializeField] private float slainCardSpacing;
+    
+    [SerializeField] private HUDView hudView;
+    [SerializeField] private HPView hpView;
 
     [Header("Prefabs & Assets")]
     [SerializeField] private GameObject cardPrefab;
@@ -53,6 +56,9 @@ public class RoomView : MonoBehaviour
         choiceState  = choice;
         dragResolver = resolver;
         playerState  = player;
+        
+        hudView.Initialise(playerState);
+        hpView.Initialise(playerState);
 
         dungeonRoom.OnRoomDealt    += HandleRoomDealt;
         dungeonRoom.OnRoomRefilled += HandleRoomRefilled;

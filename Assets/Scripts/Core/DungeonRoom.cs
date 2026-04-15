@@ -39,7 +39,7 @@ public class DungeonRoom
 
     public IReadOnlyList<CardSO> Cards => cards.AsReadOnly();
     public bool FledLastRoom { get; private set; }
-    /// <summary>True only when every card (including the survivor) is gone (flee / edge case).</summary>
+    public bool PotionUsedThisRoom { get; private set; }
     public bool IsCleared => cards.Count == 0;
     public int RemainingCards => cards.Count;
 
@@ -51,7 +51,9 @@ public class DungeonRoom
     {
         cards.Clear();
         resolvedCards.Clear();
+        
         FledLastRoom = false;
+        PotionUsedThisRoom = false;
 
         foreach (var card in newCards)
             if (card != null) cards.Add(card);
@@ -67,6 +69,9 @@ public class DungeonRoom
     public void RefillRoom(List<CardSO> newCards)
     {
         resolvedCards.Clear();
+        
+        FledLastRoom = false;
+        PotionUsedThisRoom = false;
 
         var added = new List<CardSO>(newCards.Count);
         foreach (var card in newCards)
@@ -89,7 +94,10 @@ public class DungeonRoom
         cards.Remove(card);
         resolvedCards.Add(card);
         OnCardResolved?.Invoke(card);
-
+        
+        if (card.Category == CardCategory.Potion)
+            PotionUsedThisRoom = true;
+        
         if (cards.Count == 1)
         {
             Debug.Log("[DungeonRoom] 3 cards resolved — room cleared, refilling...");

@@ -9,7 +9,8 @@ using UnityEngine;
 /// In both cases the state waits for DungeonRoom.OnRoomReady (fired by RoomView
 /// after all deal animations complete) before handing off to PlayerChoiceState.
 ///
-/// If the deck is exhausted the game ends immediately.
+/// Win condition: if fewer than 4 cards remain in the draw pile a full room can
+/// never be dealt — the leftovers are discarded and the run ends as a Victory.
 /// </summary>
 public class DrawingState : IGameState
 {
@@ -23,8 +24,14 @@ public class DrawingState : IGameState
         this.context = context;
         context.DungeonRoom.OnRoomReady += HandleRoomReady;
 
-        if (context.DeckManager.IsDeckEmpty)
+        // Win condition: fewer than 4 cards remain — a full room can never be dealt.
+        // Discard the leftovers and end the run as a victory.
+        if (context.DeckManager.DrawPileCount < RoomSize)
         {
+            context.DungeonRoom.OnRoomReady -= HandleRoomReady;
+            context.DeckManager.DiscardAll();
+            int score = ScoreCalculator.CalculateVictoryScore(context.PlayerState, context.DungeonRoom);
+            context.StateMachine.GetState<GameOverState>().SetResult(GameOverResult.Victory, score);
             context.StateMachine.TransitionTo<GameOverState>();
             return;
         }

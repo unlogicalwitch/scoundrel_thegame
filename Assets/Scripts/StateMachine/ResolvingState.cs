@@ -55,10 +55,12 @@ public class ResolvingState : IGameState
         {
             case CardCategory.Monster:
                 CombatResolver.Resolve(context.PlayerState, card, choice);
+                CameraShake.Shake(0.175f, 0.15f);
                 break;
 
             case CardCategory.Potion:
-                context.PlayerState.Heal(card.Value);
+                if (!context.DungeonRoom.PotionUsedThisRoom)
+                    context.PlayerState.Heal(card.Value);
                 break;
 
             case CardCategory.Weapon:
@@ -80,6 +82,8 @@ public class ResolvingState : IGameState
     {
         if (context.PlayerState.IsDead)
         {
+            int score = ScoreCalculator.CalculateDeathScore(context.DungeonRoom);
+            context.StateMachine.GetState<GameOverState>().SetResult(GameOverResult.Death, score);
             context.StateMachine.TransitionTo<GameOverState>();
             return;
         }

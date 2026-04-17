@@ -42,6 +42,7 @@ public class DungeonRoom
     public bool PotionUsedThisRoom { get; private set; }
     public bool IsCleared => cards.Count == 0;
     public int RemainingCards => cards.Count;
+    public bool IsRoomReady { get; private set; }
 
     /// <summary>
     /// Set up a brand-new room with up to 4 cards drawn from the deck.
@@ -111,6 +112,11 @@ public class DungeonRoom
     public void NotifyRoomReady()
     {
         OnRoomReady?.Invoke();
+    }
+
+    public void SetRoomState(bool isReady)
+    {
+        IsRoomReady = isReady;
     }
 
     public IReadOnlyList<CardSO> Flee()

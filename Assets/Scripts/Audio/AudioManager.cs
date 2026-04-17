@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     
     [SerializeField] private Sound[] sounds;
+    [SerializeField] private Sound[] musics;
     
     // [Header("Sources")]
     // [SerializeField] private AudioSource sfxSource;        
@@ -63,11 +64,11 @@ public class AudioManager : MonoBehaviour
     
     public void PlayMusic(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = Array.Find(musics, music => music.name == name);
 
         if (s == null)
         {
-            Debug.Log("Sound " + name + " not found!");
+            Debug.Log("Music " + name + " not found!");
             return;
         }
 
@@ -76,11 +77,11 @@ public class AudioManager : MonoBehaviour
     
     public void StopMusic(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = Array.Find(musics, music => music.name == name);
 
         if (s == null)
         {
-            Debug.Log("Sound " + name + " not found!");
+            Debug.Log("Music " + name + " not found!");
             return;
         }
         

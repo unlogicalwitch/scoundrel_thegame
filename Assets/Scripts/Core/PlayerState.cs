@@ -54,6 +54,7 @@ public class PlayerState
     {
         if (amount <= 0) return;
         currentHealth = Math.Min(MaxHealth, currentHealth + amount);
+        AudioManager.Instance.PlaySFX("Heal");
         OnHealthChanged?.Invoke(currentHealth, MaxHealth);
     }
 
@@ -65,6 +66,7 @@ public class PlayerState
     {
         equippedWeapon = weaponCard;
         weaponDurability = 15;
+        AudioManager.Instance.PlaySFX("Equip");
         OnWeaponChanged?.Invoke(weaponCard);
     }
 

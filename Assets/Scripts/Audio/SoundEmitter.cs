@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class SoundEmitter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private AudioSource audioSource;
+
+    private void Awake()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize(Sound sound)
     {
-        
+        audioSource.clip = sound.clip;
+        //audioSource.outputAudioMixerGroup = sound.mixerGroup;
+        audioSource.loop = sound.loop;
+        audioSource.playOnAwake = sound.playOnAwake;
+    }
+
+    public void Play()
+    {
+        audioSource.Play();
     }
 }

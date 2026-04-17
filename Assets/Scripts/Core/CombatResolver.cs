@@ -21,11 +21,15 @@ public static class CombatResolver
             // Pass the monster card so PlayerState can fire OnMonsterSlainWithWeapon.
             player.SetWeaponDurability(monster.Value, monster);
             Debug.Log("[CombatResolver] Weapon durability: " + monster.Value);
+            
+            AudioManager.Instance.PlaySFX("WeaponAttack");
         }
         else
         {
             // Barehanded (or durability gate blocked weapon use): full damage, weapon unequipped.
             player.TakeDamage(monster.Value);
+            
+            AudioManager.Instance.PlaySFX("BarehandAttack");
         }
     }
 

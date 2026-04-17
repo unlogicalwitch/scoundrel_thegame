@@ -26,6 +26,8 @@ public class ResolvingState : IGameState
 
     public void Enter(GameContext context)
     {
+        context.DungeonRoom.SetRoomState(true);
+        
         if (pendingCard == null)
         {
             Debug.LogWarning("[ResolvingState] Entered with no card set.");

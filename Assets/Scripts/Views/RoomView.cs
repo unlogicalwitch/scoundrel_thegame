@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ using UnityEngine;
 /// </summary>
 public class RoomView : MonoBehaviour
 {
+    // Events
+    
+    public event Action<CardSO> OnCardResolved;
+    
     // ── Inspector ────────────────────────────────────────────────────
 
     [Header("Layout")]
@@ -162,18 +167,10 @@ public class RoomView : MonoBehaviour
 
         var view = slotViews[slotIndex];
         slotViews[slotIndex] = null;
-
-        // Weapons are moved to the weapon slot by HandleWeaponChanged — don't discard here.
-        // Monsters slain with the weapon are moved to the slain-monster slot by
-        // HandleMonsterSlainWithWeapon — don't discard here either; we detect that by
-        // checking whether this view is about to become the pending slain monster.
-        // For all other cards (potions, bare-hand monster kills) → discard normally.
+        
         if (card.Category == CardCategory.Weapon)
             return;
-
-        // If this monster card is the one being tracked as the slain-monster view
-        // (set moments earlier by HandleMonsterSlainWithWeapon), skip the discard —
-        // it has already been routed to the weapon area.
+        
         if (card.Category == CardCategory.Monster && slainMonsterView != null && slainMonsterView.CardData == card)
             return;
 

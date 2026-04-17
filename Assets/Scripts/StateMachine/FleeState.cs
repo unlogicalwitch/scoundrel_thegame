@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -15,7 +16,7 @@ public class FleeState : IGameState
         context.DungeonRoom.OnRoomReady += HandleRoomReady;
         
         var remainingCards = context.DungeonRoom.Flee();
-        context.DeckManager.ReturnToDeck((System.Collections.Generic.IList<CardSO>)remainingCards);
+        context.DeckManager.ReturnToDeck((IList<CardSO>)remainingCards);
     }
 
     public void Exit(GameContext context)

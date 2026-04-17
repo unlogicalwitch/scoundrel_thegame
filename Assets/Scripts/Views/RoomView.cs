@@ -26,6 +26,7 @@ public class RoomView : MonoBehaviour
     
     [SerializeField] private HUDView hudView;
     [SerializeField] private HPView hpView;
+    [SerializeField] private AvoidableDisplayView avoidableDisplayView;
 
     [Header("Prefabs & Assets")]
     [SerializeField] private GameObject cardPrefab;
@@ -59,6 +60,7 @@ public class RoomView : MonoBehaviour
         
         hudView.Initialise(playerState);
         hpView.Initialise(playerState);
+        avoidableDisplayView?.Initialise(dungeonRoom);
 
         dungeonRoom.OnRoomDealt    += HandleRoomDealt;
         dungeonRoom.OnRoomRefilled += HandleRoomRefilled;

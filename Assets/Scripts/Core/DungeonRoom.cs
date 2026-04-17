@@ -52,7 +52,6 @@ public class DungeonRoom
         cards.Clear();
         resolvedCards.Clear();
         
-        FledLastRoom = false;
         PotionUsedThisRoom = false;
 
         foreach (var card in newCards)
@@ -118,6 +117,7 @@ public class DungeonRoom
     {
         FledLastRoom = true;
         OnRoomFled?.Invoke();
+        Debug.Log("[DungeonRoom] Flee");
         return cards.AsReadOnly();
     }
 }

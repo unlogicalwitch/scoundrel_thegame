@@ -47,6 +47,7 @@ using UnityEngine;
  
             activeTween = DOTween.Sequence()
                 .AppendInterval(delay)
+                .AppendCallback(() => AudioManager.Instance.PlaySFX("CardDeal"))
                 .Append(cardTransform.DOPath(
                     new[] { mid, targetPosition },
                     dealDuration,
@@ -87,6 +88,28 @@ using UnityEngine;
         
         
         
+        /// <summary>
+        /// Scale the card up 10% when picked up — smooth DOTween punch.
+        /// </summary>
+        public void PlayPickUp()
+        {
+            activeTween?.Kill(false);
+            activeTween = cardTransform
+                .DOScale(Vector3.one * 1.1f, 0.15f)
+                .SetEase(Ease.OutBack);
+        }
+
+        /// <summary>
+        /// Scale the card back to normal when released.
+        /// </summary>
+        public void PlayPutDown()
+        {
+            activeTween?.Kill(false);
+            activeTween = cardTransform
+                .DOScale(Vector3.one, 0.15f)
+                .SetEase(Ease.OutSine);
+        }
+
         public void PlaySnapBack(Vector3 targetPosition, System.Action onComplete = null)
         {
             Kill();

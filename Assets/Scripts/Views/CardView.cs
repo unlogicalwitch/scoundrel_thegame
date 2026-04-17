@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 /// <summary>
@@ -128,6 +129,7 @@ public class CardView : MonoBehaviour
         dragResolver?.OnDragStarted(this);
         spriteRenderer.sortingOrder += 5;
         isDragging = true;
+        transform.DOScale(transform.localScale * 1.1f, 0.15f).SetEase(Ease.OutBack);
     }
     
     private void OnMouseUp()
@@ -137,6 +139,7 @@ public class CardView : MonoBehaviour
         dragResolver?.OnDragReleased(this, Input.mousePosition);
         spriteRenderer.sortingOrder -= 5;
         isDragging = false;
+        transform.DOScale(transform.localScale / 1.1f, 0.15f).SetEase(Ease.OutSine);
     }
 
     // ── Cleanup ──────────────────────────────────────────────────────

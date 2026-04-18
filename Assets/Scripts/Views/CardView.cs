@@ -88,6 +88,7 @@ public class CardView : MonoBehaviour
     public void MoveTo(Vector3 targetPosition)
     {
         slotPosition = targetPosition;
+        isInteractable = false;
 
         animator.PlayDeal(targetPosition, 0);
     }

@@ -78,7 +78,7 @@ public class GameOverView : MonoBehaviour
 
     private void HandleRestart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Bootstrap");
     }
 
     // ── Helpers ───────────────────────────────────────────────────────

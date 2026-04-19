@@ -141,3 +141,33 @@
     justify-content: center;
     flex-direction: column;
 }
+
+#SettingsPanel {
+    background-color: rgb(22, 23, 26);
+    width: 100%;
+}
+
+#unity-checkmark {
+    left: 35px;
+    width: 64px;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+#ConsecutiveFleeToggle {
+    background-color: rgba(22, 23, 26, 0);
+    width: auto;
+    color: rgb(243, 243, 243);
+    top: 20%;
+    left: 10%;
+    font-size: 48px;
+    -unity-font-style: bold;
+}
+
+#ConsecutiveFleeToggle > .unity-toggle__label {
+    color: rgb(243, 243, 243);
+}
+
+#ConsecutiveFleeToggle:checked > .unity-toggle__label {
+    color: rgb(243, 243, 243);
+}

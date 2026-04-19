@@ -10,7 +10,8 @@ using UnityEngine;
 /// after all deal animations complete) before handing off to PlayerChoiceState.
 ///
 /// Win condition: if fewer than 4 cards remain in the draw pile a full room can
-/// never be dealt — the leftovers are discarded and the run ends as a Victory.
+/// never be dealt — the remaining cards (1-3) are dealt first, then discarded
+/// after animations complete, triggering Victory.
 /// </summary>
 public class DrawingState : IGameState
 {
@@ -18,21 +19,23 @@ public class DrawingState : IGameState
     private const int RefillCount = 3;
 
     private GameContext context;
+    private bool isFinalDeal;
 
     public void Enter(GameContext context)
     {
         this.context = context;
+        isFinalDeal = false;
         context.DungeonRoom.OnRoomReady += HandleRoomReady;
 
-        // Win condition: fewer than 4 cards remain — a full room can never be dealt.
-        // Discard the leftovers and end the run as a victory.
+        // Win condition: fewer than 4 cards remain — deal whatever is left,
+        // then trigger victory after animations complete.
         if (context.DeckManager.DrawPileCount < RoomSize)
         {
-            context.DungeonRoom.OnRoomReady -= HandleRoomReady;
-            context.DeckManager.DiscardAll();
-            int score = ScoreCalculator.CalculateVictoryScore(context.PlayerState, context.DungeonRoom);
-            context.StateMachine.GetState<GameOverState>().SetResult(GameOverResult.Victory, score);
-            context.StateMachine.TransitionTo<GameOverState>();
+            isFinalDeal = true;
+            int remaining = context.DeckManager.DrawPileCount;
+            var finalCards = context.DeckManager.DrawMultiple(remaining);
+            context.DungeonRoom.Deal(finalCards);
+            Debug.Log($"[DrawingState] Final deal — {remaining} cards remaining. Victory after animations.");
             return;
         }
 
@@ -58,6 +61,18 @@ public class DrawingState : IGameState
 
     private void HandleRoomReady()
     {
+        // If this was the final deal (fewer than 4 cards), trigger victory.
+        if (isFinalDeal)
+        {
+            // Discard all remaining cards in the room.
+            context.DeckManager.DiscardAll();
+            
+            int score = ScoreCalculator.CalculateVictoryScore(context.PlayerState, context.DungeonRoom);
+            context.StateMachine.GetState<GameOverState>().SetResult(GameOverResult.Victory, score);
+            context.StateMachine.TransitionTo<GameOverState>();
+            return;
+        }
+
         context.StateMachine.TransitionTo<PlayerChoiceState>();
     }
 }

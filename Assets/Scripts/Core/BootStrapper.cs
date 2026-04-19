@@ -36,6 +36,9 @@ public class Bootstrapper : MonoBehaviour
 
         var deckManager = new DeckManager();
         ServiceLocator.Register(deckManager);
+        
+        var gameSettings = new GameSettings();
+        ServiceLocator.Register(gameSettings);
 
         // Load deck assets
         int cardCount = deckLoader.LoadAndInitialise(deckManager);

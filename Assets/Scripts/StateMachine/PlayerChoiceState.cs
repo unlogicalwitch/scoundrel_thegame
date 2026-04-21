@@ -49,7 +49,7 @@ public class PlayerChoiceState : IGameState
         if (context == null) return;
         
         if (context.DungeonRoom.RemainingCards < 4) return;
-        if (context.DungeonRoom.FledLastRoom || !ServiceLocator.Get<GameSettings>().ConsecutiveFleeAllowed)
+        if (context.DungeonRoom.FledLastRoom && !ServiceLocator.Get<GameSettings>().ConsecutiveFleeAllowed)
         {
             Debug.Log("You fled the last room and must face this one");
             return;

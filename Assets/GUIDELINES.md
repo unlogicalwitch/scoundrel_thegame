@@ -17,9 +17,10 @@
 8. [View Layer Rules](#8-view-layer-rules)
 9. [Animation Rules](#9-animation-rules)
 10. [Service Locator Usage](#10-service-locator-usage)
-11. [Adding New Features — Checklist](#11-adding-new-features--checklist)
-12. [What Is Intentionally Stubbed](#12-what-is-intentionally-stubbed)
-13. [Anti-Patterns to Avoid](#13-anti-patterns-to-avoid)
+11. [Design Principles — Simplicity & Critical Evaluation](#11-design-principles--simplicity--critical-evaluation)
+12. [Adding New Features — Checklist](#12-adding-new-features--checklist)
+13. [What Is Intentionally Stubbed](#13-what-is-intentionally-stubbed)
+14. [Anti-Patterns to Avoid](#14-anti-patterns-to-avoid)
 
 ---
 
@@ -270,7 +271,115 @@ Retrieve **once** at the start of a system's lifetime (e.g. `GameStateMachine.St
 
 ---
 
-## 11. Adding New Features — Checklist
+## 11. Design Principles — Simplicity & Critical Evaluation
+
+### Core Philosophy
+**Question every abstraction. Minimize unnecessary complexity. Default to the simplest solution that works.**
+
+### Critical Evaluation Checklist
+
+Before adding any new feature or abstraction, ask:
+
+1. **Is this actually needed?**
+   - Does this solve a real problem that exists right now?
+   - Or am I building for hypothetical future needs?
+
+2. **What's the simplest version?**
+   - Can I solve this with fewer classes/events/abstractions?
+   - Am I following a pattern just because it exists elsewhere?
+
+3. **Does this need to be reactive?**
+   - Do other systems need to know immediately when this changes?
+   - Or can they just read the value when they need it?
+
+4. **Am I creating circular dependencies?**
+   - Does data flow in one direction, or does it loop back?
+   - Example: UI → Model → Event → UI (unnecessary)
+   - Better: UI → Model (done)
+
+5. **How many lines of code does this add?**
+   - If adding a similar feature requires 50+ lines of boilerplate, the design is wrong
+   - Refactor the pattern, don't replicate the complexity
+
+### Event Usage Guidelines
+
+**Use events when:**
+- Multiple unrelated systems need to react to a change
+- The change happens at unpredictable times
+- The source doesn't know who needs the data
+
+**Don't use events when:**
+- Only one system cares about the change
+- The data is only needed at specific, predictable times
+- You're just mirroring state back to the source (circular)
+
+**Example — GameSettings:**
+```csharp
+// ❌ BAD: Unnecessary event for simple read-only data
+public event Action<bool> OnSettingChanged;
+public bool MySetting 
+{ 
+    get => setting; 
+    set { setting = value; OnSettingChanged?.Invoke(value); }
+}
+
+// ✅ GOOD: Direct property access
+public bool MySetting 
+{ 
+    get => PlayerPrefs.GetInt("MySetting", 0) == 1;
+    set => PlayerPrefs.SetInt("MySetting", value ? 1 : 0);
+}
+```
+
+### Symmetry Trap
+
+**Don't blindly replicate patterns just because they exist elsewhere in the codebase.**
+
+If Feature A uses events, that doesn't mean Feature B needs them too. Evaluate each feature independently based on its actual requirements.
+
+**Example:**
+- `PlayerState.OnHealthChanged` — ✅ Needed: Multiple views react (HP display, low health effects, death)
+- `GameSettings.OnSettingChanged` — ❌ Not needed: Only read at specific decision points
+
+### Refactoring Trigger
+
+If adding a new feature requires:
+- More than 3 new methods that just mirror existing patterns
+- More than 20 lines of boilerplate
+- Circular event subscriptions
+
+**Stop and refactor the underlying system first.**
+
+### Code Review Questions
+
+When reviewing your own code or AI-generated code:
+
+1. Can I delete this and still have it work?
+2. What's the actual data flow? Draw it out.
+3. If I had to explain this to someone, would I feel embarrassed by the complexity?
+4. Would I understand this code in 6 months?
+
+### Real Example — Settings System
+
+**Original approach (overcomplicated):**
+- Private backing fields
+- Public properties with change detection
+- Events fired on every change
+- View subscribes to events to update UI
+- UI callback updates model, which fires event back to view
+- **Result:** ~180 lines, circular updates, 4 methods per setting
+
+**Simplified approach:**
+- Properties directly read/write PlayerPrefs
+- No events
+- View reads on startup, writes on change
+- **Result:** ~145 lines, unidirectional flow, 1 method per setting
+
+**Savings:** 35 lines, eliminated circular dependency, easier to maintain
+
+---
+
+## 12. Adding New Features — Checklist
 
 ### New Card Category / Effect
 - [ ] Add value to `CardCategory` enum (if needed)

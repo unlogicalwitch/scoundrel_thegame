@@ -15,6 +15,9 @@ public class HUDView : MonoBehaviour
     // ── Cached element references ─────────────────────────────────────
 
     private Label healthLabel;
+    private Button settingsPanelOpenButton;
+    private Button settingsPanelCloseButton;
+    private VisualElement settingsPanel;
 
     // ── Model reference ───────────────────────────────────────────────
 
@@ -32,12 +35,26 @@ public class HUDView : MonoBehaviour
         // Query elements from the UIDocument on this same GameObject.
         var root = GetComponent<UIDocument>().rootVisualElement;
         healthLabel = root.Q<Label>("HealthLabel");
+        settingsPanelOpenButton = root.Q<Button>("SettingsPanelOpenButton");
+        settingsPanel = root.Q<VisualElement>("SettingsPanel");
 
         if (healthLabel == null)
             Debug.LogWarning("[HUDView] Could not find 'HealthLabel' in UIDocument.");
+        if (settingsPanelOpenButton == null)
+            Debug.LogWarning("[HUDView] Could not find 'SettingsPanelOpenButton' in UIDocument.");
+        if (settingsPanel == null)
+            Debug.LogWarning("[HUDView] Could not find 'SettingsPanel' in UIDocument.");
+
+        // Subscribe to button events.
+        if (settingsPanelOpenButton != null)
+            settingsPanelOpenButton.clicked += OpenSettingsPanel;
 
         // Subscribe to model events.
         playerState.OnHealthChanged += HandleHealthChanged;
+
+        // Initialize settings panel as hidden.
+        if (settingsPanel != null)
+            settingsPanel.style.display = DisplayStyle.None;
 
         // Sync immediately with current state.
         HandleHealthChanged(playerState.CurrentHealth, playerState.MaxHealth);
@@ -45,6 +62,11 @@ public class HUDView : MonoBehaviour
 
     private void OnDestroy()
     {
+        // Unsubscribe from button events.
+        if (settingsPanelOpenButton != null)
+            settingsPanelOpenButton.clicked -= OpenSettingsPanel;
+
+        // Unsubscribe from model events.
         if (playerState != null)
             playerState.OnHealthChanged -= HandleHealthChanged;
     }
@@ -55,5 +77,11 @@ public class HUDView : MonoBehaviour
     {
         if (healthLabel != null)
             healthLabel.text = current.ToString();
+    }
+
+    private void OpenSettingsPanel()
+    {
+        if (settingsPanel != null)
+            settingsPanel.style.display = DisplayStyle.Flex;
     }
 }

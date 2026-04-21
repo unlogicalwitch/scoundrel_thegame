@@ -145,6 +145,13 @@
 #SettingsPanel {
     background-color: rgb(22, 23, 26);
     width: 100%;
+    display: none;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    right: auto;
+    position: relative;
+    height: 100%;
 }
 
 #unity-checkmark {
@@ -156,12 +163,21 @@
 
 #ConsecutiveFleeToggle {
     background-color: rgba(22, 23, 26, 0);
-    width: auto;
+    width: 70%;
     color: rgb(243, 243, 243);
     top: 20%;
     left: 10%;
     font-size: 48px;
     -unity-font-style: bold;
+    display: flex;
+    position: absolute;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    height: auto;
+    bottom: auto;
+    right: auto;
 }
 
 #ConsecutiveFleeToggle > .unity-toggle__label {
@@ -169,5 +185,30 @@
 }
 
 #ConsecutiveFleeToggle:checked > .unity-toggle__label {
+    color: rgb(243, 243, 243);
+}
+
+#ConsumeMultiplePotionToggle {
+    background-color: rgba(22, 23, 26, 0);
+    width: 70%;
+    color: rgb(243, 243, 243);
+    top: 26%;
+    left: 10%;
+    font-size: 48px;
+    -unity-font-style: bold;
+    display: flex;
+    position: absolute;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    -unity-text-align: upper-left;
+}
+
+#ConsumeMultiplePotionToggle > .unity-toggle__label {
+    color: rgb(243, 243, 243);
+}
+
+#ConsumeMultiplePotionToggle:checked > .unity-toggle__label {
     color: rgb(243, 243, 243);
 }

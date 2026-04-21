@@ -3,25 +3,15 @@ using UnityEngine;
 
 /// <summary>
 /// Pure C# class that manages game settings with persistence via PlayerPrefs.
-/// Fires events when settings change so views and logic can react.
 /// </summary>
 public class GameSettings
 {
     // ── Constants ────────────────────────────────────────────────────
     
     private const string PREF_CONSECUTIVE_FLEE_ALLOWED = "ConsecutiveFleeAllowed";
-    
-    // ── Events ───────────────────────────────────────────────────────
-    
-    /// <summary>
-    /// Fired when the consecutive flee setting changes.
-    /// Passes the new value (true = allowed, false = restricted).
-    /// </summary>
-    public event Action<bool> OnConsecutiveFleeChanged;
+    private const string PREF_CONSUME_MULTIPLE_POTION = "ConsumeMultiplePotion";
     
     // ── Properties ───────────────────────────────────────────────────
-    
-    private bool consecutiveFleeAllowed;
     
     /// <summary>
     /// If true, player can flee multiple rooms in a row.
@@ -29,30 +19,36 @@ public class GameSettings
     /// </summary>
     public bool ConsecutiveFleeAllowed
     {
-        get => consecutiveFleeAllowed;
+        get => PlayerPrefs.GetInt(PREF_CONSECUTIVE_FLEE_ALLOWED, 0) == 1;
         set
         {
-            if (consecutiveFleeAllowed == value) return;
-            
-            consecutiveFleeAllowed = value;
             PlayerPrefs.SetInt(PREF_CONSECUTIVE_FLEE_ALLOWED, value ? 1 : 0);
             PlayerPrefs.Save();
-            
-            OnConsecutiveFleeChanged?.Invoke(value);
             Debug.Log($"[GameSettings] ConsecutiveFleeAllowed set to {value}");
+        }
+    }
+    
+    /// <summary>
+    /// If true, player can consume multiple potions in a room without losing effect.
+    /// If false, only the first potion in a room has effect (original Scoundrel rule).
+    /// </summary>
+    public bool ConsumeMultiplePotionAllowed
+    {
+        get => PlayerPrefs.GetInt(PREF_CONSUME_MULTIPLE_POTION, 0) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(PREF_CONSUME_MULTIPLE_POTION, value ? 1 : 0);
+            PlayerPrefs.Save();
+            Debug.Log($"[GameSettings] ConsumeMultiplePotionAllowed set to {value}");
         }
     }
     
     // ── Constructor ──────────────────────────────────────────────────
     
-    /// <summary>
-    /// Loads settings from PlayerPrefs. Defaults to false (restricted) if not set.
-    /// </summary>
     public GameSettings()
     {
-        // Default to false (original Scoundrel rule: no consecutive flee)
-        consecutiveFleeAllowed = PlayerPrefs.GetInt(PREF_CONSECUTIVE_FLEE_ALLOWED, 0) == 1;
-        Debug.Log($"[GameSettings] Loaded ConsecutiveFleeAllowed: {consecutiveFleeAllowed}");
+        Debug.Log($"[GameSettings] Loaded ConsecutiveFleeAllowed: {ConsecutiveFleeAllowed}");
+        Debug.Log($"[GameSettings] Loaded ConsumeMultiplePotionAllowed: {ConsumeMultiplePotionAllowed}");
     }
     
     // ── Public API ───────────────────────────────────────────────────
@@ -63,6 +59,7 @@ public class GameSettings
     public void ResetToDefaults()
     {
         ConsecutiveFleeAllowed = false;
+        ConsumeMultiplePotionAllowed = false;
         Debug.Log("[GameSettings] Reset to defaults");
     }
 }

@@ -3,8 +3,7 @@ using UnityEngine.UIElements;
 
 /// <summary>
 /// View layer for the settings panel.
-/// Subscribes to GameSettings events and updates UI accordingly.
-/// Calls GameSettings when user interacts with toggles.
+/// Reads from and writes to GameSettings when user interacts with toggles.
 /// </summary>
 public class SettingsView : MonoBehaviour
 {
@@ -16,6 +15,9 @@ public class SettingsView : MonoBehaviour
     // ── UI Elements ──────────────────────────────────────────────────
     
     private Toggle consecutiveFleeToggle;
+    private Toggle consumeMultiplePotionToggle;
+    private Button settingsPanelCloseButton;
+    private VisualElement settingsPanel;
     
     // ── Lifecycle ────────────────────────────────────────────────────
     
@@ -42,21 +44,52 @@ public class SettingsView : MonoBehaviour
         // Get UI elements
         var root = uiDocument.rootVisualElement;
         consecutiveFleeToggle = root.Q<Toggle>("ConsecutiveFleeToggle");
+        consumeMultiplePotionToggle = root.Q<Toggle>("ConsumeMultiplePotionToggle");
+        settingsPanelCloseButton = root.Q<Button>("SettingsPanelCloseButton");
+        settingsPanel = root.Q<VisualElement>("SettingsPanel");
         
         if (consecutiveFleeToggle == null)
         {
             Debug.LogError("[SettingsView] ConsecutiveFleeToggle not found in UI");
-            return;
         }
         
-        // Initialize toggle state from settings
-        consecutiveFleeToggle.value = gameSettings.ConsecutiveFleeAllowed;
+        if (consumeMultiplePotionToggle == null)
+        {
+            Debug.LogError("[SettingsView] ConsumeMultiplePotionToggle not found in UI");
+        }
         
-        // Subscribe to UI events
-        consecutiveFleeToggle.RegisterValueChangedCallback(OnConsecutiveFleeToggleChanged);
+        if (settingsPanelCloseButton == null)
+        {
+            Debug.LogWarning("[SettingsView] SettingsPanelCloseButton not found in UI");
+        }
         
-        // Subscribe to settings events
-        gameSettings.OnConsecutiveFleeChanged += OnConsecutiveFleeSettingChanged;
+        if (settingsPanel == null)
+        {
+            Debug.LogWarning("[SettingsView] SettingsPanel not found in UI");
+        }
+        
+        // Initialize toggle states from settings
+        if (consecutiveFleeToggle != null)
+        {
+            consecutiveFleeToggle.value = gameSettings.ConsecutiveFleeAllowed;
+            consecutiveFleeToggle.RegisterValueChangedCallback(OnConsecutiveFleeToggleChanged);
+        }
+        
+        if (consumeMultiplePotionToggle != null)
+        {
+            consumeMultiplePotionToggle.value = gameSettings.ConsumeMultiplePotionAllowed;
+            consumeMultiplePotionToggle.RegisterValueChangedCallback(OnConsumeMultiplePotionToggleChanged);
+        }
+        
+        if (settingsPanelCloseButton != null)
+        {
+            settingsPanelCloseButton.clicked += CloseSettingsPanel;
+        }
+        
+        if (settingsPanel != null)
+        {
+            settingsPanel.style.display = DisplayStyle.None;
+        }
         
         Debug.Log("[SettingsView] Initialized");
     }
@@ -69,10 +102,14 @@ public class SettingsView : MonoBehaviour
             consecutiveFleeToggle.UnregisterValueChangedCallback(OnConsecutiveFleeToggleChanged);
         }
         
-        // Unsubscribe from settings events
-        if (gameSettings != null)
+        if (consumeMultiplePotionToggle != null)
         {
-            gameSettings.OnConsecutiveFleeChanged -= OnConsecutiveFleeSettingChanged;
+            consumeMultiplePotionToggle.UnregisterValueChangedCallback(OnConsumeMultiplePotionToggleChanged);
+        }
+        
+        if (settingsPanelCloseButton != null)
+        {
+            settingsPanelCloseButton.clicked -= CloseSettingsPanel;
         }
     }
     
@@ -91,14 +128,25 @@ public class SettingsView : MonoBehaviour
     }
     
     /// <summary>
-    /// Called when the GameSettings consecutive flee setting changes.
-    /// Updates the UI toggle to match (in case it was changed elsewhere).
+    /// Called when the user toggles the consume multiple potion toggle in the UI.
+    /// Updates the GameSettings.
     /// </summary>
-    private void OnConsecutiveFleeSettingChanged(bool newValue)
+    private void OnConsumeMultiplePotionToggleChanged(ChangeEvent<bool> evt)
     {
-        if (consecutiveFleeToggle != null && consecutiveFleeToggle.value != newValue)
+        if (gameSettings != null)
         {
-            consecutiveFleeToggle.value = newValue;
+            gameSettings.ConsumeMultiplePotionAllowed = evt.newValue;
+        }
+    }
+    
+    /// <summary>
+    /// Closes the settings panel.
+    /// </summary>
+    private void CloseSettingsPanel()
+    {
+        if (settingsPanel != null)
+        {
+            settingsPanel.style.display = DisplayStyle.None;
         }
     }
 }

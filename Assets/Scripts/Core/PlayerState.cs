@@ -46,7 +46,7 @@ public class PlayerState
     {
         if (amount <= 0) return;
         currentHealth = Math.Max(0, currentHealth - amount);
-        OnHealthChanged?.Invoke(currentHealth, MaxHealth);
+        OnHealthChanged?.Invoke(currentHealth, -amount);
         if (currentHealth == 0) OnDeath?.Invoke();
     }
 
@@ -55,7 +55,7 @@ public class PlayerState
         if (amount <= 0) return;
         currentHealth = Math.Min(MaxHealth, currentHealth + amount);
         AudioManager.Instance.PlaySFX("Heal");
-        OnHealthChanged?.Invoke(currentHealth, MaxHealth);
+        OnHealthChanged?.Invoke(currentHealth, amount);
     }
 
     /// <summary>

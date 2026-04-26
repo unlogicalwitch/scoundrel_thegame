@@ -87,7 +87,7 @@ public class ResolvingState : IGameState
     {
         if (context.PlayerState.IsDead)
         {
-            int score = ScoreCalculator.CalculateDeathScore(context.DungeonRoom);
+            int score = ScoreCalculator.CalculateDeathScore(context.DungeonRoom, context.DeckManager);
             context.StateMachine.GetState<GameOverState>().SetResult(GameOverResult.Death, score);
             context.StateMachine.TransitionTo<GameOverState>();
             return;

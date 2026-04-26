@@ -1,26 +1,23 @@
 using UnityEngine;
 
-/// <summary>
-/// Stateless score math. No MonoBehaviour, no scene references.
-///
-/// Death score  — negative: sum of all remaining monster card values in the room at time of death.
-/// Victory score — positive: player's remaining HP plus the value of any unresolved
-///                 potion card still sitting in the last room.
-/// </summary>
 public static class ScoreCalculator
 {
-    /// <summary>
-    /// Called when the player dies.
-    /// Returns a negative integer equal to -(sum of monster values still in the room).
-    /// </summary>
-    public static int CalculateDeathScore(DungeonRoom room)
+    public static int CalculateDeathScore(DungeonRoom room, DeckManager deckManager)
     {
         int monsterTotal = 0;
+        
         foreach (var card in room.Cards)
         {
             if (card.Category == CardCategory.Monster)
                 monsterTotal += card.Value;
         }
+        
+        foreach (var card in deckManager.DrawPile)
+        {
+            if (card.Category == CardCategory.Monster)
+                monsterTotal += card.Value;
+        }
+        
         return -monsterTotal;
     }
 

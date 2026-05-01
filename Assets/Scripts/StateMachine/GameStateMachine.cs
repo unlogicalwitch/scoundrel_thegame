@@ -1,4 +1,4 @@
-    using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +16,7 @@ public class GameStateMachine : MonoBehaviour
     [SerializeField] private InputHandler inputHandler;
     [SerializeField] private DragResolver dragResolver;
     [SerializeField] private GameOverView gameOverView;
+    [SerializeField] private HealEffectView healEffectView;
 
     // ── State ────────────────────────────────────────────────────────
 
@@ -36,13 +37,14 @@ public class GameStateMachine : MonoBehaviour
 
     private IEnumerator Start()
     {
-        var deckManager = ServiceLocator.Get<DeckManager>();
-        var playerState = new PlayerState(startingHealth);
-        var dungeonRoom = new DungeonRoom();
-        context = new GameContext(deckManager, playerState, dungeonRoom, this);
-        
+        var deckManager  = ServiceLocator.Get<DeckManager>();
+        var gameSettings = ServiceLocator.Get<GameSettings>();
+        var playerState  = new PlayerState(startingHealth);
+        var dungeonRoom  = new DungeonRoom();
+        context = new GameContext(deckManager, playerState, dungeonRoom, this, gameSettings);
+
         RegisterStates();
-        
+
         // Start the game with player choice state
         yield return new WaitForSeconds(1.5f);
         var playerChoiceState = (PlayerChoiceState)states[typeof(PlayerChoiceState)];
@@ -50,6 +52,7 @@ public class GameStateMachine : MonoBehaviour
         inputHandler?.Initialise(playerChoiceState);
         dragResolver?.Initialise(playerChoiceState, context.PlayerState);
         gameOverView?.Initialise((GameOverState)states[typeof(GameOverState)]);
+        healEffectView?.Initialise(context.PlayerState);
 
         TransitionTo<DrawingState>();
     }
@@ -58,11 +61,11 @@ public class GameStateMachine : MonoBehaviour
 
     private void RegisterStates()
     {
-        states[typeof(DrawingState)] = new DrawingState();
+        states[typeof(DrawingState)]      = new DrawingState();
         states[typeof(PlayerChoiceState)] = new PlayerChoiceState();
-        states[typeof(ResolvingState)] = new ResolvingState();
-        states[typeof(FleeState)] = new FleeState();
-        states[typeof(GameOverState)] = new GameOverState();
+        states[typeof(ResolvingState)]    = new ResolvingState();
+        states[typeof(FleeState)]         = new FleeState();
+        states[typeof(GameOverState)]     = new GameOverState();
     }
 
     /// <summary>

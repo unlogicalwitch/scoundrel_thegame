@@ -6,16 +6,18 @@ using UnityEngine;
 /// </summary>
 public class GameContext
 {
-    public DeckManager  DeckManager  { get; }
-    public PlayerState  PlayerState  { get; }
-    public DungeonRoom  DungeonRoom  { get; }
+    public DeckManager      DeckManager  { get; }
+    public PlayerState      PlayerState  { get; }
+    public DungeonRoom      DungeonRoom  { get; }
     public GameStateMachine StateMachine { get; }
- 
-    public GameContext(DeckManager deckManager, PlayerState playerState, DungeonRoom dungeonRoom, GameStateMachine stateMachine)
+    public GameSettings     GameSettings { get; }
+
+    public GameContext(DeckManager deckManager, PlayerState playerState, DungeonRoom dungeonRoom, GameStateMachine stateMachine, GameSettings gameSettings)
     {
-        DeckManager = deckManager;
-        PlayerState = playerState;
-        DungeonRoom = dungeonRoom;
+        DeckManager  = deckManager;
+        PlayerState  = playerState;
+        DungeonRoom  = dungeonRoom;
         StateMachine = stateMachine;
+        GameSettings = gameSettings;
     }
 }

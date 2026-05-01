@@ -61,8 +61,7 @@ public class ResolvingState : IGameState
                 break;
 
             case CardCategory.Potion:
-                var gameSettings = ServiceLocator.Get<GameSettings>();
-                bool canConsumePotion = gameSettings.ConsumeMultiplePotionAllowed || !context.DungeonRoom.PotionUsedThisRoom;
+                bool canConsumePotion = context.GameSettings.ConsumeMultiplePotionAllowed || !context.DungeonRoom.PotionUsedThisRoom;
                 
                 if (canConsumePotion)
                     context.PlayerState.Heal(card.Value);
